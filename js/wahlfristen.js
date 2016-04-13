@@ -15,6 +15,9 @@ function updateDates(first_day, last_day){
   d.setDate(d.getDate() - 30);
   $('#wlundwa').text($.datepicker.formatDate( formatstring, d ));
   d = new Date(first_day);
+  d.setDate(d.getDate() - 30);
+  $('#stwber').text($.datepicker.formatDate( formatstring, d ));
+  d = new Date(first_day);
   d.setDate(d.getDate() - 25);
   $('#konstwa').text($.datepicker.formatDate( formatstring, d ));
   d = new Date(first_day);
@@ -35,6 +38,9 @@ function updateDates(first_day, last_day){
   d = new Date(first_day);
   d.setDate(d.getDate() - 9);
   $('#bkwv').text($.datepicker.formatDate( formatstring, d ));
+  d = new Date(first_day);
+  d.setDate(d.getDate() - 9);
+  $('#fbw').text($.datepicker.formatDate( formatstring, d ));
   d = new Date(first_day);
   $('#ewt').text($.datepicker.formatDate( formatstring, d ));
   d = new Date(last_day);
