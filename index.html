@@ -32,13 +32,13 @@
 		<div class="form-group">
 		<label for="datestart" class="col-sm-2 control-label">Erster Wahltag</label>
 		<div class="col-sm-2">
-		<input type="date" class="form-control" id="datestart">
+		<input type="text" class="form-control" id="datestart">
 		</div>
 		</div>
 		<div class="form-group">
 		<label for="dateend" class="col-sm-2 control-label">Letzter Wahltag</label>
 		<div class="col-sm-2">
-		<input type="date" class="form-control" id="dateend">
+		<input type="text" class="form-control" id="dateend">
 		</div>
 		</div>
 	</div>
@@ -47,22 +47,29 @@
 	<h2>Fristen</h2>
 	<div class="col-lg-8">
 		<table class="table table-striped table-hover">
-		<tr><th>Aktion</th><th>Frist</th></tr>
-		<tr><td>Festlegung des Wahltermins</td><td id="flwahltermin">-</td></tr>
-		<tr><td>Wahl des Wahlleiters und des Wahlausschusses</td><td id="wlundwa">-</td></tr>
-		<tr><td>Stichtag Wahlberechtigung</td><td id="stwber">-</td></tr>
-		<tr><td>Konstituierende Sitzung des Wahlausschusses</td><td id="konstwa">-</td></tr>
-		<tr><td>Festlegung der Auslageorte des Wählerverzeichnisses</td><td id="flaowvz">-</td></tr>
-		<tr><td>Wahlbekanntmachung</td><td id="wbk">-</td></tr>
-		<tr><td class="wb">Auslage des Wählerverzeichnisses Start</td><td id="alwvzs">-</td></tr>
-		<tr><td class="wb">Auslage des Wählerverzeichnisses Ende</td><td id="alwvze">-</td></tr>
-		<tr><td class="wb">Frist zur Einreichung von Wahlvorschlägen</td><td id="wv">-</td></tr>
-		<tr><td>Bekanntmachung der Wahlvorschläge</td><td id="bkwv">-</td></tr>
-		<tr><td class="wb">Frist zur Einreichung von Briefwahlanträgen</td><td id="fbw">-</td></tr>
-		<tr><td class="wb"><i>Erster Wahltag</i></td><td id="ewt">-</td></tr>
-		<tr><td class="wb"><i>Letzter Wahltag</i></td><td id="lwt">-</td></tr>
-		<tr><td>Veröffentlichung des Wahlergebnisprotokolls</td><td id="vwep">-</td></tr>
-		<tr><td>Konstituierende Sitzung der FSV</td><td id="konstfsv">-</td></tr>
+		<tr><th>Aktion</th><th>Frist</th><th>Absatz in FSWO</th></tr>
+		<tr><td>Festlegung des Wahltermins</td><td id="flwahltermin">-</td><td><a href="https://sp.uni-bonn.de/dokumente/idx/Ordnungen/FSWO.html#§5">§5 Abs. 3</a></td></tr>
+		<tr><td>Wahl des Wahlleiters und des Wahlausschusses</td><td id="wlundwa">-</td><td> <a href="https://sp.uni-bonn.de/dokumente/idx/Ordnungen/FSWO.html#$10">§10 Abs. 2</a></td></tr>
+		<tr><td>Stichtag Wahlberechtigung</td><td id="stwber">-</td><td><a href="https://sp.uni-bonn.de/dokumente/idx/Ordnungen/FSWO.html#9">§9 Abs. 1</a></td></tr>
+		<tr><td>Konstituierende Sitzung des Wahlausschusses</td><td id="konstwa">-</td><td><a href="https://sp.uni-bonn.de/dokumente/idx/Ordnungen/FSWO.html#11">§11 Abs. 1</a></td</tr>
+		<tr><td> Festlegung der Urnenstandorte und -öffnungszeiten <br/>
+                 Festlegung der Auslageorte für das Wählendenverzeichnis und des Zeitraums der Auslage<br/>
+                 Festlegung der gemeinsamen Frist für die Einreichung von Kandidaturen, Briefwahlanträgen und Einsprüchen gegen das Wählendenverzeichnis<br/>
+                 Festlegung des Zeitpunkts des Endes der Wahl und des Ortes für die Auszählung der Wahl<br/>
+                 Festlegung des Ortes und Termins für die konstituierende Sitzung des gewählten Organs<br/>
+            </td><td id="flaowvz">-</td><td><a href="https://sp.uni-bonn.de/dokumente/idx/Ordnungen/FSWO.html#11">§11 Abs. 2</a></td
+        </tr>
+        <tr><td>Übernhame des Wählendenverzeichnisses</td><td id="uebernahmewvz">-</td><td><a href="https://sp.uni-bonn.de/dokumente/idx/Ordnungen/FSWO.html#12">§12 Abs. 1</a></td</tr>
+		<tr><td>Wahlbekanntmachung</td><td id="wbk">-</td><td><a href="https://sp.uni-bonn.de/dokumente/idx/Ordnungen/FSWO.html#13">§13 Abs. 1</a></td</tr>
+		<tr><td class="wb">Auslage des Wählendenverzeichnisses (mindestens 3 Tage)</td><td>Zwischen <p id="alwvzs">-</p> und <p id="alwvze">-</p></td><td><a href="https://sp.uni-bonn.de/dokumente/idx/Ordnungen/FSWO.html#12">§12 Abs. 3</a><br/><a href="https://sp.uni-bonn.de/dokumente/idx/Ordnungen/FSWO.html#12">§11 Abs. 2</a></td</tr>
+		<tr><td class="wb">Frist zur Einreichung von Kandidaturen</td><td>Zwischen <p id="wvs">-</p> und <p id="wve">-</p></td><td><a href="https://sp.uni-bonn.de/dokumente/idx/Ordnungen/FSWO.html#11">§11 Abs. 2</a></td</tr>
+		
+		<tr><td>Bekanntmachung der Wahlvorschläge</td><td id="bkwv">-</td><td><a href="https://sp.uni-bonn.de/dokumente/idx/Ordnungen/FSWO.html#11">§11 Abs. 3</a><br/><a href="https://sp.uni-bonn.de/dokumente/idx/Ordnungen/FSWO.html#14">§14 Abs. 3</a></td</tr>
+		<tr><td class="wb">Frist zur Einreichung von Briefwahlanträgen</td><td>Zwischen <p id="fbws">-</p> und <p id="fbwe">-</p></td><td><a href="https://sp.uni-bonn.de/dokumente/idx/Ordnungen/FSWO.html#11">§11 Abs. 2</a></td</tr>
+		<tr><td class="wb"><i>Erster Wahltag</i></td><td id="ewt">-</td><td><a href="https://sp.uni-bonn.de/dokumente/idx/Ordnungen/FSWO.html#5">§5 Abs. 2</a></td</tr>
+		<tr><td class="wb"><i>Letzter Wahltag</i></td><td id="lwt">-</td><td><a href="https://sp.uni-bonn.de/dokumente/idx/Ordnungen/FSWO.html#5">§5 Abs. 2</a></td</tr>
+		<!--tr><td>Veröffentlichung des Wahlergebnisprotokolls</td><td id="vwep">-</td></tr-->
+		<tr><td>Konstituierende Sitzung der FSV</td><td>Zwischen <p id="konstfsvs">-</p> und <p id="konstfsve">-</p></td><td><a href="https://sp.uni-bonn.de/dokumente/idx/Ordnungen/FSWO.html#20">§20 </a></td</tr>
 		</table>
 	</div>
 	</div>
@@ -113,17 +120,17 @@
 
 	<p>Bei Stimmengleichheit zwischen mehreren Kandidaten einer Liste entscheidet die Reihenfolge der Kandidaten auf der Liste über die Rangfolge. Bei Stimmengleichheit zwischen mehreren Listen entscheidet die Wahlleiterin durch Los, welcher Liste der Sitz zuzuteilen ist.</p>
 
-	<p>Wird lediglich ein gültiger Wahlvorschlag eingereicht oder ist die Zahl der Kandidierenden aller Wahlvorschläge kleiner oder gleich der Zahl der zu besetzenden Sitze (<span class="zahl_sitze">11</span>), so findet Mehrheitswahl ohne Bindung an die vorgeschlagenen Kandidaten statt. In diesem Fall liegt das Wählerverzeichnis an den Urnen aus; das Nähere über das bei der Mehrheitswahl anzuwendende Verfahren bestimmt der Wahlausschuss. Würden bei der Mehrheitswahl weniger Mitglieder gewählt als Sitze zu besetzen sind, blieben die restlichen Sitze unbesetzt.</p>
+	<p>Wird lediglich ein gültiger Wahlvorschlag eingereicht oder ist die Zahl der Kandidierenden aller Wahlvorschläge kleiner oder gleich der Zahl der zu besetzenden Sitze (<span class="zahl_sitze">11</span>), so findet Mehrheitswahl ohne Bindung an die vorgeschlagenen Kandidaten statt. In diesem Fall liegt das Wählendenverzeichnis an den Urnen aus; das Nähere über das bei der Mehrheitswahl anzuwendende Verfahren bestimmt der Wahlausschuss. Würden bei der Mehrheitswahl weniger Mitglieder gewählt als Sitze zu besetzen sind, blieben die restlichen Sitze unbesetzt.</p>
 
-	<h3>Wählerverzeichnis</h3>
+	<h3>Wählendenverzeichnis</h3>
 
 	<p>Wahlberechtigt und wählbar sind die Mitglieder der Fachschaft Kunstgeschichte, die am <span class="frist_wahlberechtigung"><b>31. Oktober 2015</b></span> an der Rheinischen Friedrich-Wilhelms-Universität Bonn eingeschrieben sind. Maßgeblich für die Wahlberechtigung ist darüber hinaus das bei der Immatrikulation oder der Rückmeldung für die Wahlberechtigung angegebene Fach. Zweithörer und Gasthörer sind nicht wahlberechtigt.</p>
 
-	<p>Wählen kann nur, wer im Wählerverzeichnis eingetragen ist.</p>
+	<p>Wählen kann nur, wer im Wählendenverzeichnis eingetragen ist.</p>
 
-	<p>Das Wählerverzeichnis liegt in der Zeit vom <span class="start_auslage_waehlerverzeichnis"><b>13. November</b></span> bis zum <span class="ende_auslegung_waehlerverzeichnis"><b>18. November 2015</b></span> <span class="ort_auslegung_waehlerverzeichnis"><b>im Geschäftszimmer des Kunsthistorischen Instituts</b></span> <span class="zeit_auslegung_waehlerverzeichnis">während der allgemeinen Öffnungszeiten</span> zur Einsicht aus. </p>
+	<p>Das Wählendenverzeichnis liegt in der Zeit vom <span class="start_auslage_waehlerverzeichnis"><b>13. November</b></span> bis zum <span class="ende_auslegung_waehlerverzeichnis"><b>18. November 2015</b></span> <span class="ort_auslegung_waehlerverzeichnis"><b>im Geschäftszimmer des Kunsthistorischen Instituts</b></span> <span class="zeit_auslegung_waehlerverzeichnis">während der allgemeinen Öffnungszeiten</span> zur Einsicht aus. </p>
 
-	<p>Einsprüche gegen die Richtigkeit des Wählerverzeichnisses können bei der Wahlleiterin innerhalb der Auslegungsfrist, jedoch spätestens bis \textbf{Mittwoch, den 18. November 2015, 18:00 Uhr} eingelegt werden. </p>
+	<p>Einsprüche gegen die Richtigkeit des Wählendenverzeichnisses können bei der Wahlleiterin innerhalb der Auslegungsfrist, jedoch spätestens bis \textbf{Mittwoch, den 18. November 2015, 18:00 Uhr} eingelegt werden. </p>
 
 	<h3>Briefwahl</h3>
 
