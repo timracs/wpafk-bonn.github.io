@@ -7,6 +7,21 @@ function update(){
 }
 
 function updateDates(first_day, last_day){
+  var wochentag = ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag' ]
+  d_first = new Date(first_day)
+  $('#wochentag_1').text( wochentag[d_first.getDay()])
+  if (d_first.getDay() > 0 && d_first.getDay() < 4)
+    $("#wochentag_1").css("color","green");
+  else 
+    $("#wochentag_1").css("color","red");
+    
+  d_last = new Date(last_day)
+  $('#wochentag_2').text( wochentag[d_last.getDay()])
+  if (d_last.getDay() > 0 && d_last.getDay() < 6 && (d_last - d_first)/1000/60/60/24 > 1 && (d_last - d_first)/1000/60/60/24 < 6)
+    $("#wochentag_2").css("color","green");
+  else 
+    $("#wochentag_2").css("color","red");
+ 
   var formatstring = "dd.mm.yy";
   //Festlegung Wahltermin 
   d = new Date(first_day);
