@@ -1,10 +1,36 @@
+var wahlbekanntmachung_link = ""
+
+function index_onload(){
+    wahlbekanntmachung_link = document.getElementById("wahlbekanntmachung_link").href
+
+}
+
+function bekanntmachung_onload(){
+    //alert(window.location)
+    var url_string = window.location//"http://www.example.com/t.html?a=1&b=3&c=m2-m3-m4-m5"; //window.location.href
+    var url = new URL(url_string);
+    var first_day = url.searchParams.get("start");
+    var last_day = url.searchParams.get("end");
+    $( "#datestart" ).datepicker( "setDate",new Date(first_day) )
+    $( "#dateend" ).datepicker( "setDate",new Date(last_day) )
+    updateDates(first_day, last_day)
+}
+
 function update(){
   var first_day = $( "#datestart" ).datepicker( "getDate" );
   var last_day  = $( "#dateend" ).datepicker( "getDate" );
   if(first_day != null && last_day != null){
     updateDates(first_day, last_day);
+    updateBekanntmachungLink(first_day, last_day);
   }
 }
+
+function updateBekanntmachungLink(first_day, last_day){
+    var formatstring = "yy-mm-dd"
+    document.getElementById("wahlbekanntmachung_link").href = wahlbekanntmachung_link + "start=" + $.datepicker.formatDate( formatstring, first_day ) + "&end=" + $.datepicker.formatDate( formatstring, last_day )
+}
+
+
 
 function updateDates(first_day, last_day){
   var wochentag = ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag' ]
