@@ -69,8 +69,18 @@ function update(){
         maxDate: temp_day_1 
 
         });       
-        
-     
+    
+    //konst sitzung    
+    temp_day_1 = new Date(last_day)
+    temp_day_1.setDate(temp_day_1.getDate() + 5);
+    
+    temp_day_2 = new Date(last_day)
+    temp_day_2.setDate(temp_day_2.getDate() + 14);
+    $('#konsti_datum').datepicker('option',{
+        minDate: temp_day_1,
+        maxDate: temp_day_2 
+
+        });        
 }
 
 function update_button_clicked(){
@@ -91,6 +101,10 @@ function update_button_clicked(){
     update_frist_wahlberechtigung(first_day)
     
     update_waehlerverzeichnis($("#auslage_wv_start").val(),$("#auslage_wv_ende").val(),$("#auslage_wv_ort").val())
+    
+    update_auszaehlung($("#auszaehlung_datum").val(),$("#auszaehlung_zeit").val(),$("#auszaehlung_ort").val())
+    
+    update_konsti($("#konsti_datum").val(),$("#konsti_zeit").val(),$("#konsti_ort").val())
 }
 
 // updatet den Wochentag hinter den Eingabefeldern für erster und letzter Wahltag
@@ -210,6 +224,29 @@ function  update_waehlerverzeichnis(start,end,ort)
         element.innerHTML = end
     }
     for (const element of document.getElementsByClassName('ort_auslage_waehlerverzeichnis')){
+        element.innerHTML = ort
+    }
+}
+
+function update_auszaehlung(datum,zeit,ort)
+{
+    for (const element of document.getElementsByClassName('datum_auszaehlung')){
+        element.innerHTML = datum
+    }
+    for (const element of document.getElementsByClassName('uhrzeit_auszaehlung')){
+        element.innerHTML = zeit
+    }
+    for (const element of document.getElementsByClassName('ort_auszaehlung')){
+        element.innerHTML = ort
+    }
+}
+
+function update_konsti(datum,zeit,ort)
+{
+    for (const element of document.getElementsByClassName('datum_uhrzeit_konstituierende_sitzung')){
+        element.innerHTML = datum + ", " + zeit + " Uhr"
+    }
+    for (const element of document.getElementsByClassName('ort_konstituierende_sitzung')){
         element.innerHTML = ort
     }
 }
