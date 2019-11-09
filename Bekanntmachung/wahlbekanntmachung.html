@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Wahlbekanntmachung</title>
-    <base href="../">
+
     <script>
         window.onload = function () {
             bekanntmachung_onload()
@@ -14,19 +14,20 @@
         }
     </script>
      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="js/jquery-2.1.4.min.js"></script>
-    <script src="js/jquery-ui.min.js"></script>
+    <script src="../js/jquery-2.1.4.min.js"></script>
+    <script src="../js/jquery-ui.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/wahlfristen.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/wahlbekanntmachung.js"></script>
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/jquery-ui.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/jquery-ui.min.css" rel="stylesheet">
     <script type="text/javascript">
       $(function() {
         $.datepicker.setDefaults( $.datepicker.regional[ "de" ] );
         $( "#datestart" ).datepicker({dateFormat: "dd.mm.yy", firstDay: 1, onSelect: function(){update();}});
         $( "#dateend" ).datepicker({dateFormat: "dd.mm.yy", firstDay: 1, onSelect: function(){update();}});
+        $( "#wv" ).datepicker({dateFormat: "dd.mm.yy", firstDay: 1, onSelect: function(){update();}});
       });
     </script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -58,6 +59,7 @@
 	                    <p id="wochentag_1"></p> 
 	                </div>
 	            </div>
+	            
 	            <div class="form-group">
 	                <label for="dateend" class="col-sm-2 control-label">Letzter Wahltag</label>
 	                <div class="col-sm-2">
@@ -68,50 +70,75 @@
 	                </div>
 	            </div>
 	            
-	        <!-- Wählende Fachschaft-->
-            <div class="form-group">
-                <label for="fsname" class="col-sm-2 control-label">wählende Fachschaft:</label>
-                <div class="col-sm-2">
-                    <input type="text" class="form-control" id="fsname">
+	            <!-- Wählende Fachschaft-->
+                <div class="form-group">
+                    <label for="fsname" class="col-sm-2 control-label">wählende Fachschaft:</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" id="fsname">
+                    </div>
                 </div>
-            </div>
-            
-            <!-- Anzahl Wahlberechtigte-->
-            <div class="form-group">
-                <label for="anzwahlberechtigte" class="col-sm-2 control-label">Anzahl der Wahlberechtigten:</label>
-                <div class="col-sm-2">
-                    <input type="number" class="form-control" id="anzwahlberechtigte">
+                
+                <!-- Anzahl Wahlberechtigte-->
+                <div class="form-group">
+                    <label for="anzwahlberechtigte" class="col-sm-2 control-label">Anzahl der Wahlberechtigten:</label>
+                    <div class="col-sm-2">
+                        <input type="number" class="form-control" id="anzwahlberechtigte">
+                    </div>
                 </div>
-            </div>
-            
-            <!-- FSV in Satzung-->
-            <div class="form-group">
-                <label for="fsvsatzung" class="col-sm-2 control-label">Wahl einer FSV ist in der Fachschaftssatzung vorgeschrieben</label>
+                
+                <!-- FSV in Satzung-->
+                <div class="form-group">
+                    <label for="fsvsatzung" class="col-sm-2 control-label">Wahl einer FSV ist in der Fachschaftssatzung vorgeschrieben</label>
                     <div class="col-sm-2">
                         <input type="checkbox" class="form-control" id="fsvsatzung">
                     </div>
-	            </div>    
-            </div>  
-            
-            <!-- update button-->
-            <div class="form-group">
-                <!--label for="" class="col-sm-2 control-label">Wahl einer FSV ist in der Fachschaftssatzung vorgeschrieben</label-->
-                <div class="col-sm-2">
-                    <button class="form-control" id="update" onclick="update_button_clicked()">Update</button>
+	                  
+                </div>  
+                
+                <!-- Wahlleitung-->
+                <div class="form-group">
+                    <div class="form-group">
+                        <label for="wahlleitung" class="col-sm-2 control-label">Wahlleitung:</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="wahlleitung">
+                        </div>
+                        <label for="wahlleitungkontakt" class="col-sm-2 control-label">Kontakt:</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="wahlleitungkontakt">
+                        </div>
+                    </div>
                 </div>
-	        </div>    
-        </div>   
+                
+                <div class="form-group">
+	                <label for="wv" class="col-sm-2 control-label">Frist zur Einreichung der Wahlvorschläge:</label>
+	                <div class="col-sm-2">
+	                <input type="text" class="form-control" id="wv">
+	                </div>
+	                <div>
+	                    <p id="wochentag_wv"></p> 
+	                </div>
+	            </div>
+                
+                <!-- update button-->
+                <div class="form-group">
+                    <!--label for="" class="col-sm-2 control-label">Wahl einer FSV ist in der Fachschaftssatzung vorgeschrieben</label-->
+                    <div class="col-sm-2">
+                        <button class="form-control" id="update" onclick="update_button_clicked()">Update</button>
+                    </div>
+	            </div>    
+            </div>   
+        </div>
 
         
         <br/>
         
       	<h1>Wahlbekanntmachung</h1>
 	    
-	    <h2>Wahl <span class="derdesfsvfsr">der</span> <span class="fsvfsr">Fachschaftsvertretung/Fachschaftsrat</span> der Fachschaft <span class="fachschaft">YOLO</span></h2>
+	    <h2>Wahl <span class="derdesfsvfsr">der/des</span> <span class="fsvfsr">Fachschaftsvertretung/Fachschaftsrat</span> der Fachschaft <span class="fachschaft">YOLO</span></h2>
 	    
-	    <p>Gewählt wird die <b><span class="fsvfsr">Fachschaftsvertretung/Fachschaftsrat</span> der Fachschaft <span class="fachschaft">Kunstgeschichte</span></b> der Rheinischen Friedrich-Wilhelms-Universität Bonn.</p>
+	    <p>Gewählt wird <span class="diederfsvfsr">der/die</span> <b><span class="fsvfsr">Fachschaftsvertretung/Fachschaftsrat</span> der Fachschaft <span class="fachschaft">Kunstgeschichte</span></b> der Rheinischen Friedrich-Wilhelms-Universität Bonn.</p>
 	    
-	    <p>Es sind <b><span class="zahl_sitze">11</span> Mitglieder</b> <span class="derdesfsvfsr">der</span> <span class="fsvfsr">Fachschaftsvertretung/Fachschaftsrat</span> zu wählen.</p>
+	    <p>Es sind <b><span class="zahl_sitze">11</span> Mitglieder</b> in <span class="diedenfsvfsr">der</span> <span class="fsvfsr">Fachschaftsvertretung/Fachschaftsrat</span> zu wählen.</p>
 	    
 	    <p>Die Wahl findet im Zeitraum <span class="wahlzeitraum">YOLO</span> statt.</p>
 	    
@@ -128,9 +155,9 @@
 
 	    <h3>Wahlvorschläge</h3>
 
-	    <p><b>Musterformulare für Wahlvorschläge sind bei der Wahlleiterin erhältlich.<br> Ihre Verwendung wird empfohlen.</b></p>
+	    <p><b>Musterformulare für Wahlvorschläge sind bei der Wahlleitung erhältlich.<br> Ihre Verwendung wird empfohlen.</b></p>
 
-	    <p>Wahlvorschläge sind bis zum <span class="frist_einreichung_wahlvorschlaege"><b>18. November 2015, 18:00 Uhr</b></span> bei der <b>Wahlleiterin</b> einzureichen. </p>
+	    <p>Wahlvorschläge sind bis zum <span class="frist_einreichung_wahlvorschlaege"><b>18. November 2015, 18:00 Uhr</b></span> bei der <b>Wahlleitung</b> einzureichen. </p>
 
 	    <p>Ein Wahlvorschlag enthält entweder den Namen eines Einzelkandidaten oder einen Listennamen mit den Namen der Kandidaten dieser Liste in einer erkennbaren Reihenfolge.</p>
 
@@ -149,7 +176,7 @@
 
 	    <p>Scheidet ein gewähltes Mitglied aus, so wird der Sitz demjenigen Kandidaten derselben Wahlliste zugeteilt, der nach dem Wahlergebnis unter den bisher nicht berücksichtigten Kandidaten die meisten Stimmen hat. Ist die Wahlliste erschöpft, so bleibt der Sitz unbesetzt.</p>
 
-	    <p>Bei Stimmengleichheit zwischen mehreren Kandidaten einer Liste entscheidet die Reihenfolge der Kandidaten auf der Liste über die Rangfolge. Bei Stimmengleichheit zwischen mehreren Listen entscheidet die Wahlleiterin durch Los, welcher Liste der Sitz zuzuteilen ist.</p>
+	    <p>Bei Stimmengleichheit zwischen mehreren Kandidaten einer Liste entscheidet die Reihenfolge der Kandidaten auf der Liste über die Rangfolge. Bei Stimmengleichheit zwischen mehreren Listen entscheidet die Wahlleitung durch Los, welcher Liste der Sitz zuzuteilen ist.</p>
 
 	    <p>Wird lediglich ein gültiger Wahlvorschlag eingereicht oder ist die Zahl der Kandidierenden aller Wahlvorschläge kleiner oder gleich der Zahl der zu besetzenden Sitze (<span class="zahl_sitze">11</span>), so findet Mehrheitswahl ohne Bindung an die vorgeschlagenen Kandidaten statt. In diesem Fall liegt das Wählendenverzeichnis an den Urnen aus; das Nähere über das bei der Mehrheitswahl anzuwendende Verfahren bestimmt der Wahlausschuss. Würden bei der Mehrheitswahl weniger Mitglieder gewählt als Sitze zu besetzen sind, blieben die restlichen Sitze unbesetzt.</p>
 
@@ -161,13 +188,13 @@
 
 	    <p>Das Wählendenverzeichnis liegt in der Zeit vom <span class="start_auslage_waehlerverzeichnis"><b>13. November</b></span> bis zum <span class="ende_auslegung_waehlerverzeichnis"><b>18. November 2015</b></span> <span class="ort_auslegung_waehlerverzeichnis"><b>im Geschäftszimmer des Kunsthistorischen Instituts</b></span> <span class="zeit_auslegung_waehlerverzeichnis">während der allgemeinen Öffnungszeiten</span> zur Einsicht aus. </p>
 
-	    <p>Einsprüche gegen die Richtigkeit des Wählendenverzeichnisses können bei der Wahlleiterin innerhalb der Auslegungsfrist, jedoch spätestens bis \textbf{Mittwoch, den 18. November 2015, 18:00 Uhr} eingelegt werden. </p>
+	    <p>Einsprüche gegen die Richtigkeit des Wählendenverzeichnisses können bei der Wahlleitung innerhalb der Auslegungsfrist, jedoch spätestens bis \textbf{Mittwoch, den 18. November 2015, 18:00 Uhr} eingelegt werden. </p>
 
 	    <h3>Briefwahl</h3>
 
 	    <p>Es ist in begründeten Ausnahmefällen möglich, Briefwahl zu beantragen. Der Briefwahlantrag ist schriftlich einzureichen und zu begründen. Er muss Name, Anschrift und Matrikelnummer des Antragsstellers enthalten.</p>
 
-	    <p>Anträge auf Briefwahl müssen bis spätestens <span class="frist_briefwahlantraege"><b>Samstag, den 21. November 2015, 18:00 Uhr</b></span> bei der Wahlleiterin eingegangen sein. Jeder Briefwähler hat die Briefwahlunterlagen bis spätestens 24 Stunden vor der Wahl bei der Wahlleiterin abzuholen. Briefwähler, die außerdem nicht in der Lage sind, ihre Briefwahlunterlagen persönlich bei der Wahlleiterin abzuholen, können die Briefwahlunterlagen zusammen mit dem Antrag auf Briefwahl schriftlich anfordern.</p>
+	    <p>Anträge auf Briefwahl müssen bis spätestens <span class="frist_briefwahlantraege"><b>Samstag, den 21. November 2015, 18:00 Uhr</b></span> bei der Wahlleitung eingegangen sein. Jeder Briefwähler hat die Briefwahlunterlagen bis spätestens 24 Stunden vor der Wahl bei der Wahlleitung abzuholen. Briefwähler, die außerdem nicht in der Lage sind, ihre Briefwahlunterlagen persönlich bei der Wahlleitung abzuholen, können die Briefwahlunterlagen zusammen mit dem Antrag auf Briefwahl schriftlich anfordern.</p>
 
 	    <h3>Versiegelung</h3>
 	    
@@ -182,6 +209,15 @@
 	    <h3>Konstituierende Sitzung</h3>
 
 	    <p>Die konstituierende Sitzung <span class="derdesfsvfsr">der</span> neu gewählten <span class="fsvfsr">Fachschaftsvertretung/Fachschaftsrat</span> findet am <span class="datum_uhrzeit_konstituierende_sitzung">8. Dezember 2015 ab 12 Uhr</span> <span class="ort_konstituierende_sitzung">im Fachschaftsraum über der Diathek</span> statt.</p>
+        
+        <h3> Wahlleitung </h3>
+        <p>Die Wahl wird geleitet von <b><span class="wahlleitung">Wahlleitung</span></b>.</p>
+        <p>Kontakt:<span class="wahlleitungkontakt">email@beipiel.de</p>
+        </br>
+        </br>
+        </br>
+        <p>__________________________________________</p>
+        <p>Unterschrift <b><span class="wahlleitung">Wahlleitung</span></b></p>
       </div>
   </div>
 </body>

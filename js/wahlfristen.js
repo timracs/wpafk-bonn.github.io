@@ -18,6 +18,8 @@ function bekanntmachung_onload(){
     last_day = new Date(last_day)
     
     updateDates(first_day, last_day)
+    
+
 }
 
 function update_button_clicked(){
@@ -70,28 +72,42 @@ function updateWochentag(first_day, last_day){
 function update_fsvfsr(gremium)
 {   
     var gremium = "Fachschaftsrat"
-    var gremium_artikel = "den"
+    var derdesfsvfsr = "des"
+    var diederfsvfsr = "der"
+    var diedenfsvfsr = "den"
+    
     var zahl_sitze = 11
     if ($( "#anzwahlberechtigte" ).val() > 500)
     {
         gremium = "Fachschaftsvertretung"
-        gremium_artikel = "die"
+        derdesfsvfsr = "der"
+        diederfsvfsr = "die"
+        diedenfsvfsr = "die"
+        
         if($( "#anzwahlberechtigte" ).val() > 2000)
             zahl_sitze = 19
-        else if($( "#anzwahlberechtigte" ).val() > 2000)
+        else if($( "#anzwahlberechtigte" ).val() > 1000)
             zahl_sitze = 15
     }
     if ($( "#fsvsatzung" ).is(":checked"))
     
     {
         gremium = "Fachschaftsvertretung"
-        gremium_artikel = "die"
+        derdesfsvfsr = "der"
+        diederfsvfsr = "die"
+        diedenfsvfsr = "die"
     }
     for (const element of document.getElementsByClassName('fsvfsr')){
         element.innerHTML = gremium
     }
     for (const element of document.getElementsByClassName('derdesfsvfsr')){
-        element.innerHTML = gremium_artikel
+        element.innerHTML = derdesfsvfsr
+    }
+    for (const element of document.getElementsByClassName('diederfsvfsr')){
+        element.innerHTML = diederfsvfsr
+    }
+    for (const element of document.getElementsByClassName('diedenfsvfsr')){
+        element.innerHTML = diedenfsvfsr
     }
     for (const element of document.getElementsByClassName('zahl_sitze')){
         element.innerHTML = zahl_sitze
