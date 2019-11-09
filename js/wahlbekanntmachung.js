@@ -11,28 +11,66 @@ function bekanntmachung_onload(){
     last_day = new Date(last_day)
     $( "#dateend" ).datepicker( "setDate" ,last_day)
     
-    //setze möglichen Zeitraum für Frist zum Einreichen der Wahlvorschläge
-    var temp_day_1 = new Date(first_day)
-    temp_day_1.setDate(temp_day_1.getDate() - 10);
-    var temp_day_2 = new Date(first_day)
-    temp_day_2.setDate(temp_day_2.getDate() - 13);
-     $('#wv').datepicker('option',{
-        minDate: temp_day_2,
-        maxDate: temp_day_1 
-
-        });
-
+    update()
+   
+    
     
 
 }
 
 function update(){
-  var first_day = $( "#datestart" ).datepicker( "getDate" );
-  var last_day  = $( "#dateend" ).datepicker( "getDate" );
-  if(first_day != null && last_day != null){
+    var first_day = $( "#datestart" ).datepicker( "getDate" );
+    var last_day  = $( "#dateend" ).datepicker( "getDate" );
+    if(first_day != null && last_day != null){
     //updateDates(first_day, last_day);
     //updateBekanntmachungLink(first_day, last_day);
-  }
+    }
+    //setze möglichen Zeitraum für Frist zum Einreichen der Wahlvorschläge
+    var temp_day_1 = new Date(first_day)
+    temp_day_1.setDate(temp_day_1.getDate() - 10);
+    var temp_day_2 = new Date(first_day)
+    temp_day_2.setDate(temp_day_2.getDate() - 13);
+    $('#wv').datepicker('option',{
+        minDate: temp_day_2,
+        maxDate: temp_day_1 
+
+        });
+    
+    // auslage Wählendenverzeichnis
+    temp_day_1 = $( "#wv" ).datepicker( "getDate" );
+    temp_day_1.setDate(temp_day_1.getDate() - 3);
+    
+    temp_day_2 = new Date(first_day)
+    temp_day_2.setDate(temp_day_2.getDate() - 30);
+    $('#auslage_wv_start').datepicker('option',{
+        minDate: temp_day_2,
+        maxDate: temp_day_1 
+
+        });
+    
+    temp_day_1 = $( "#wv" ).datepicker( "getDate" );
+    //temp_day_1.setDate(temp_day_1.getDate());
+    
+    temp_day_2 = $( "#auslage_wv_start" ).datepicker( "getDate" );
+    temp_day_2.setDate(temp_day_2.getDate() +3);
+    $('#auslage_wv_ende').datepicker('option',{
+        minDate: temp_day_2,
+        maxDate: temp_day_1 
+
+        });   
+    
+    temp_day_1 = new Date(last_day)
+    temp_day_1.setDate(temp_day_1.getDate() + 5);
+    
+    temp_day_2 = new Date(last_day)
+    temp_day_2.setDate(temp_day_2.getDate());
+    $('#auszaehlung_datum').datepicker('option',{
+        minDate: temp_day_2,
+        maxDate: temp_day_1 
+
+        });       
+        
+     
 }
 
 function update_button_clicked(){
@@ -46,7 +84,13 @@ function update_button_clicked(){
     update_wahlzeitraum($.datepicker.formatDate( formatstring, first_day),$.datepicker.formatDate( formatstring, last_day))
     
     var wahlvorschlaege = $( "#wv" ).datepicker( "getDate" );
-    update_wahlfristen($.datepicker.formatDate( formatstring, wahlvorschlaege))
+    update_wahlfristen($.datepicker.formatDate( formatstring, wahlvorschlaege),$("#wvtime").val())
+    
+    update_wahlleitung($("#wahlleitung").val(),$("#wahlleitungkontakt").val())
+    
+    update_frist_wahlberechtigung(first_day)
+    
+    update_waehlerverzeichnis($("#auslage_wv_start").val(),$("#auslage_wv_ende").val(),$("#auslage_wv_ort").val())
 }
 
 // updatet den Wochentag hinter den Eingabefeldern für erster und letzter Wahltag
@@ -123,10 +167,50 @@ function update_fs_name()
     }
 }
 
-function update_wahlfristen(wahlvorschlaege)
+function update_wahlfristen(wahlvorschlaege,wahlvorschlaege_zeit)
 {
     for (const element of document.getElementsByClassName('frist_einreichung_wahlvorschlaege')){
         element.innerHTML = wahlvorschlaege
+    }
+    for (const element of document.getElementsByClassName('frist_einreichung_wahlvorschlaege_uhrzeit')){
+        element.innerHTML = wahlvorschlaege_zeit
+    }
+    for (const element of document.getElementsByClassName('frist_briefwahlantraege')){
+        element.innerHTML = wahlvorschlaege + ', ' + wahlvorschlaege_zeit
+    }
+    
+}
+
+function update_wahlleitung(wahlleitung,kontakt)
+{
+    for (const element of document.getElementsByClassName('wahlleitung')){
+        element.innerHTML = wahlleitung
+    }
+    for (const element of document.getElementsByClassName('wahlleitungkontakt')){
+        element.innerHTML = kontakt
+    }
+}
+
+function update_frist_wahlberechtigung(first_day)
+{
+    var formatstring = "dd. MM yy"
+    var temp_day = new Date(first_day)
+    temp_day.setDate(temp_day.getDate() - 30);
+    for (const element of document.getElementsByClassName('frist_wahlberechtigung')){
+        element.innerHTML = $.datepicker.formatDate( formatstring, temp_day)
+    }
+}
+
+function  update_waehlerverzeichnis(start,end,ort)
+{
+    for (const element of document.getElementsByClassName('start_auslage_waehlerverzeichnis')){
+        element.innerHTML = start
+    }
+    for (const element of document.getElementsByClassName('ende_auslage_waehlerverzeichnis')){
+        element.innerHTML = end
+    }
+    for (const element of document.getElementsByClassName('ort_auslage_waehlerverzeichnis')){
+        element.innerHTML = ort
     }
 }
 

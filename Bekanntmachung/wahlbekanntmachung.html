@@ -19,17 +19,15 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/wahlbekanntmachung.js"></script>
+    <script src="../js/jquery-clockpicker.min.js"></script>
+    <script src="../js/datepicker-de.js"></script>
+    
     <!-- Bootstrap -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/jquery-ui.min.css" rel="stylesheet">
-    <script type="text/javascript">
-      $(function() {
-        $.datepicker.setDefaults( $.datepicker.regional[ "de" ] );
-        $( "#datestart" ).datepicker({dateFormat: "dd.mm.yy", firstDay: 1, onSelect: function(){update();}});
-        $( "#dateend" ).datepicker({dateFormat: "dd.mm.yy", firstDay: 1, onSelect: function(){update();}});
-        $( "#wv" ).datepicker({dateFormat: "dd.mm.yy", firstDay: 1, onSelect: function(){update();}});
-      });
-    </script>
+    <link href="../css/jquery-clockpicker.min.css" rel="stylesheet">
+    
+    
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -110,14 +108,61 @@
                 </div>
                 
                 <div class="form-group">
-	                <label for="wv" class="col-sm-2 control-label">Frist zur Einreichung der Wahlvorschläge:</label>
+	                <label for="wv" class="col-sm-2 control-label">Gemeinsame Frist für die Einreichung von Kandidaturen, Briefwahlanträgen und Einsprüchen gegen das Wählendenverzeichnis</label>
 	                <div class="col-sm-2">
-	                <input type="text" class="form-control" id="wv">
+	                    <input type="text" class="form-control" id="wv">
 	                </div>
-	                <div>
-	                    <p id="wochentag_wv"></p> 
+	                <label for="wvtime" class="col-sm-2 control-label">Zeit:</label>
+	                <div class="form-group">
+                        <div class="col-sm-2 input-group clockpicker" data-autoclose="true">
+                            <input id="wvtime" type="text" class="form-control" value="18:00">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-time"></span>
+                             </span>
+                        </div>
+	                
 	                </div>
-	            </div>
+                </div>
+                
+                 <div class="form-group">
+                    <div class="form-group">
+                        <label for="auslage_wv_start" class="col-sm-2 control-label">Auslage des Wählendenverzeichnisses:</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="auslage_wv_start">
+                        </div>
+                        <label for="auslage_wv_ende" class="col-sm-2 control-label">bis: </label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="auslage_wv_ende">
+                        </div>
+                        <label for="auslage_wv_ort" class="col-sm-2 control-label">Ort:</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="auslage_wv_ort">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="form-group">
+                        <label for="auszaehlung_datum" class="col-sm-2 control-label">Auszählung der Stimmen:</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="auszaehlung_datum">
+                        </div>
+                        
+                        <label for="auszaehlung_ort" class="col-sm-2 control-label">Ort:</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="auszaehlung_ort">
+                        </div>
+                        
+                        <label for="auszaehlung_zeit" class="col-sm-2 control-label">Uhrzeit </label>
+                        <div class="col-sm-2 input-group clockpicker" data-autoclose="true">
+                            <input id="auszaehlung_zeit" type="text" class="form-control" value="18:00">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-time"></span>
+                             </span>
+                        </div>
+                        
+                    </div>
+                </div>
                 
                 <!-- update button-->
                 <div class="form-group">
@@ -153,40 +198,36 @@
 	    <tr><td>Mittwoch, 02. Dezember 2015</td><td>10:00 - 16:00 Uhr</td><td>Foyer des Kunsthistorischen Instituts</td></tr>
 	    </table>
 
-	    <h3>Wahlvorschläge</h3>
+	    <h3>Kandiaturen</h3>
 
-	    <p><b>Musterformulare für Wahlvorschläge sind bei der Wahlleitung erhältlich.<br> Ihre Verwendung wird empfohlen.</b></p>
+	    <p><b>Musterformulare für Kandiaturen sind bei der Wahlleitung erhältlich.<br> Ihre Verwendung wird empfohlen.</b></p>
 
-	    <p>Wahlvorschläge sind bis zum <span class="frist_einreichung_wahlvorschlaege"><b>18. November 2015, 18:00 Uhr</b></span> bei der <b>Wahlleitung</b> einzureichen. </p>
+	    <p>Kandiaturen sind bis zum <b><span class="frist_einreichung_wahlvorschlaege">ein Datum</span></b> um <b><span class="frist_einreichung_wahlvorschlaege_uhrzeit">X UHR</span></b>  bei der <b>Wahlleitung</b> einzureichen. </p>
 
-	    <p>Ein Wahlvorschlag enthält entweder den Namen eines Einzelkandidaten oder einen Listennamen mit den Namen der Kandidaten dieser Liste in einer erkennbaren Reihenfolge.</p>
+	    <p>Eine Kandidatur muss mindestens enthalten: Familienname(n), Vorname(n), ladungsfähige Anschrift, E-Mail-Adresse, Matrikelnummer und Unterschrift der kandidierenden Person, sowie Bezeichnung der Wahl, für die die Kandidatur gelten soll</p>
 
-	    <p>Jeder Wahlberechtigte kann sich selbst oder andere Wahlberechtigte zur Wahl vorschlagen. Der Wahlvorschlag muss mindestens von fünf Wahlberechtigten persönlich und handschriftlich unterzeichnet sein. Mit dem Wahlvorschlag ist eine unwiderrufliche, unterschriebene Erklärung jedes Kandidaten einzureichen, dass der Aufnahme in den Wahlvorschlag zugestimmt wird. Ein Kandidat darf nicht in mehrere Wahlvorschläge aufgenommen werden. Ein Wahlberechtigter darf nicht mehrere Wahlvorschläge unterzeichnen.</p>
-
-	    <p>Der Wahlvorschlag muss mindestens Familien- und Vornamen, Anschriften, E-Mail-Adresse und Matrikelnummer der Kandidaten enthalten, sowie die Wahl bezeichnen, für die er gelten soll.</p>
-
-	    <p>(Die Anforderungen an einen Wahlvorschlag ergeben sich aus § 7 FSWO (Siehe http://sp.uni-bonn.de/dokumente/idx/Ordnungen/FSWO.html#§7)</p>
+	    <p>(Die Anforderungen an einen Wahlvorschlag ergeben sich aus § 14 FSWO (Siehe http://sp.uni-bonn.de/dokumente/idx/Ordnungen/FSWO.html#§14)</p>
 
 
 	    <h3>Wahlsystem</h3>
 
-	    <p>Eine Fachschaft bildet einen Wahlkreis. Jeder Wähler hat eine Stimme, die er für einen Kandidaten einer Wahlliste abgibt. Die Sitze werden auf die Wahllisten im Verhältnis der für sie abgegebenen Stimmen im d'Hondt'schen Höchstzahlverfahren verteilt. Die danach auf die einzelnen Wahllisten entfallenden Sitze werden in den Wahllisten aufgeführten Kandidaten in der Reihenfolge der von ihnen erreichten Stimmenzahl zugeteilt.</p>
+        <p> Eine Fachschaft bildet einen Wahlkreis. Jede wahlberechtigte Person hat eine Stimme, die sie für eine kandidierende Person abgibt.</p>
 
-	    <p>Entfallen auf eine Wahlliste mehr Sitze als diese Kandidaten enthält, so bleiben die überzähligen Sitze unbesetzt.</p>
+        <p> Gewählt sind die Personen mit den meisten Stimmen, die mindestens 1 Stimme erhalten haben.</p>
 
-	    <p>Scheidet ein gewähltes Mitglied aus, so wird der Sitz demjenigen Kandidaten derselben Wahlliste zugeteilt, der nach dem Wahlergebnis unter den bisher nicht berücksichtigten Kandidaten die meisten Stimmen hat. Ist die Wahlliste erschöpft, so bleibt der Sitz unbesetzt.</p>
+        <p> Bei Stimmgleichheit entscheidet die Wahlleitung durch Los über die Reihenfolge.</p>
 
-	    <p>Bei Stimmengleichheit zwischen mehreren Kandidaten einer Liste entscheidet die Reihenfolge der Kandidaten auf der Liste über die Rangfolge. Bei Stimmengleichheit zwischen mehreren Listen entscheidet die Wahlleitung durch Los, welcher Liste der Sitz zuzuteilen ist.</p>
+        <p> Scheidet ein gewähltes Mitglied aus, so wird der Sitz derjenigen kandidierenden Person zugeteilt, die nach dem Wahlergebnis unter den bisher nicht berücksichtigten Personen die meisten Stimmen, jedoch mindestens eine Stimme, hat. Ist die Liste dieser Personen erschöpft, so bleibt der Sitz unbesetzt.</p>
 
-	    <p>Wird lediglich ein gültiger Wahlvorschlag eingereicht oder ist die Zahl der Kandidierenden aller Wahlvorschläge kleiner oder gleich der Zahl der zu besetzenden Sitze (<span class="zahl_sitze">11</span>), so findet Mehrheitswahl ohne Bindung an die vorgeschlagenen Kandidaten statt. In diesem Fall liegt das Wählendenverzeichnis an den Urnen aus; das Nähere über das bei der Mehrheitswahl anzuwendende Verfahren bestimmt der Wahlausschuss. Würden bei der Mehrheitswahl weniger Mitglieder gewählt als Sitze zu besetzen sind, blieben die restlichen Sitze unbesetzt.</p>
-
+        <p> Ist zu einem Zeitpunkt mindestens die Hälfte der Sitze des Organs unbesetzt, finden innerhalb der nach dieser Wahlordnung kürzestmöglichen Zeit Neuwahlen statt. Der oder die FSR-Vorsitzende beruft dann unverzüglich eine FSVV ein, auf der der Wahltermin festgelegt und ein Wahlausschuss gewählt wird.
+	    
 	    <h3>Wählendenverzeichnis</h3>
 
-	    <p>Wahlberechtigt und wählbar sind die Mitglieder der Fachschaft Kunstgeschichte, die am <span class="frist_wahlberechtigung"><b>31. Oktober 2015</b></span> an der Rheinischen Friedrich-Wilhelms-Universität Bonn eingeschrieben sind. Maßgeblich für die Wahlberechtigung ist darüber hinaus das bei der Immatrikulation oder der Rückmeldung für die Wahlberechtigung angegebene Fach. Zweithörer und Gasthörer sind nicht wahlberechtigt.</p>
+	    <p>Wahlberechtigt und wählbar sind die Mitglieder der Fachschaft <span class="fachschaft">YOLO</span></h2>, die am <b><span class="frist_wahlberechtigung"></span></b> an der Rheinischen Friedrich-Wilhelms-Universität Bonn eingeschrieben sind. Maßgeblich für die Wahlberechtigung ist darüber hinaus das bei der Immatrikulation oder der Rückmeldung für die Wahlberechtigung angegebene Fach. Zweithörer und Gasthörer sind nicht wahlberechtigt.</p>
 
 	    <p>Wählen kann nur, wer im Wählendenverzeichnis eingetragen ist.</p>
 
-	    <p>Das Wählendenverzeichnis liegt in der Zeit vom <span class="start_auslage_waehlerverzeichnis"><b>13. November</b></span> bis zum <span class="ende_auslegung_waehlerverzeichnis"><b>18. November 2015</b></span> <span class="ort_auslegung_waehlerverzeichnis"><b>im Geschäftszimmer des Kunsthistorischen Instituts</b></span> <span class="zeit_auslegung_waehlerverzeichnis">während der allgemeinen Öffnungszeiten</span> zur Einsicht aus. </p>
+	    <p>Das Wählendenverzeichnis liegt in der Zeit vom <b><span class="start_auslage_waehlerverzeichnis">11.11.2019</span></b> bis zum <b><span class="ende_auslage_waehlerverzeichnis"><b>18. November 2015</b></span></b> im <b><span class="ort_auslage_waehlerverzeichnis">Büro</span></b> <span class="zeit_auslegung_waehlerverzeichnis">während der allgemeinen Öffnungszeiten</span> zur Einsicht aus. </p>
 
 	    <p>Einsprüche gegen die Richtigkeit des Wählendenverzeichnisses können bei der Wahlleitung innerhalb der Auslegungsfrist, jedoch spätestens bis \textbf{Mittwoch, den 18. November 2015, 18:00 Uhr} eingelegt werden. </p>
 
@@ -194,13 +235,8 @@
 
 	    <p>Es ist in begründeten Ausnahmefällen möglich, Briefwahl zu beantragen. Der Briefwahlantrag ist schriftlich einzureichen und zu begründen. Er muss Name, Anschrift und Matrikelnummer des Antragsstellers enthalten.</p>
 
-	    <p>Anträge auf Briefwahl müssen bis spätestens <span class="frist_briefwahlantraege"><b>Samstag, den 21. November 2015, 18:00 Uhr</b></span> bei der Wahlleitung eingegangen sein. Jeder Briefwähler hat die Briefwahlunterlagen bis spätestens 24 Stunden vor der Wahl bei der Wahlleitung abzuholen. Briefwähler, die außerdem nicht in der Lage sind, ihre Briefwahlunterlagen persönlich bei der Wahlleitung abzuholen, können die Briefwahlunterlagen zusammen mit dem Antrag auf Briefwahl schriftlich anfordern.</p>
+	    <p>Anträge auf Briefwahl müssen bis spätestens <b><span class="frist_briefwahlantraege">Datum, Uhrzeit</span></b> Uhr bei der Wahlleitung eingegangen sein. Jeder Briefwähler hat die Briefwahlunterlagen bis spätestens 24 Stunden vor der Wahl bei der Wahlleitung abzuholen. Briefwähler, die außerdem nicht in der Lage sind, ihre Briefwahlunterlagen persönlich bei der Wahlleitung abzuholen, können die Briefwahlunterlagen zusammen mit dem Antrag auf Briefwahl schriftlich anfordern.</p>
 
-	    <h3>Versiegelung</h3>
-	    
-	    <p>Die öffentliche Versiegelung der Wahlurnen findet am <span class="datum_versiegelung">31.02.2016</span> <span class="uhrzeit_versiegelung">um 11:11 Uhr</span> <span class="ort_versiegelung">im Hinterhof</span> statt.</p>
-	    
-	    
 	    <h3>Auszählung</h3>
 
 	    <p>Die öffentliche Auszählung der Wahl findet am <span class="datum_auszaehlung">2. Dezember 2015</span> <span class="uhrzeit_auszaehlung">direkt im Anschluss an das Ende der Wahl um 16:00 Uhr</span> <span class="ort_auszaehlung">im Fachschaftsraum über der Diathek</span> statt.</p>
@@ -212,7 +248,7 @@
         
         <h3> Wahlleitung </h3>
         <p>Die Wahl wird geleitet von <b><span class="wahlleitung">Wahlleitung</span></b>.</p>
-        <p>Kontakt:<span class="wahlleitungkontakt">email@beipiel.de</p>
+        <p>Kontakt: <span class="wahlleitungkontakt">email@beipiel.de</p>
         </br>
         </br>
         </br>
@@ -221,6 +257,22 @@
       </div>
   </div>
 </body>
+<script type="text/javascript">
+      $(function() {
+        $.datepicker.setDefaults( $.datepicker.regional[ "de" ] );
+        $( "#datestart" ).datepicker({dateFormat: "dd.mm.yy", firstDay: 1, onSelect: function(){update();}});
+        $( "#dateend" ).datepicker({dateFormat: "dd.mm.yy", firstDay: 1, onSelect: function(){update();}});
+        $( "#wv" ).datepicker({dateFormat: "dd.mm.yy", firstDay: 1, onSelect: function(){update();}});
+        $( "#auslage_wv_start" ).datepicker({dateFormat: "dd.mm.yy", firstDay: 1, onSelect: function(){update();}});
+        $( "#auslage_wv_ende" ).datepicker({dateFormat: "dd.mm.yy", firstDay: 1, onSelect: function(){update();}});
+        $( "#auszaehlung_datum" ).datepicker({dateFormat: "dd.mm.yy", firstDay: 1, onSelect: function(){update();}});
+        
+      });
+    </script>
+    
+    <script type="text/javascript">
+        $('.clockpicker').clockpicker();
+    </script>
 </html>
 
     </div>
