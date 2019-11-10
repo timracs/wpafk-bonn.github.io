@@ -25,8 +25,9 @@
     <script type="text/javascript">
       $(function() {
         $.datepicker.setDefaults( $.datepicker.regional[ "de" ] );
-        $( "#datestart" ).datepicker({dateFormat: "dd.mm.yy", firstDay: 1, onSelect: function(){update();}});
-        $( "#dateend" ).datepicker({dateFormat: "dd.mm.yy", firstDay: 1, onSelect: function(){update();}});
+        $( "#datestart" ).datepicker({beforeShowDay: $.datepicker.noWeekends, dateFormat: "dd.mm.yy", firstDay: 1, onSelect: function(){update();}});
+        $( "#dateend" ).datepicker({beforeShowDay: $.datepicker.noWeekends, dateFormat: "dd.mm.yy", firstDay: 1, onSelect: function(){update();}});
+        
       });
     </script>
     <!-- Bootstrap -->

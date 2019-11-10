@@ -282,8 +282,8 @@
 <script type="text/javascript">
       $(function() {
         $.datepicker.setDefaults( $.datepicker.regional[ "de" ] );
-        $( "#datestart" ).datepicker({dateFormat: "dd.mm.yy", firstDay: 1, onSelect: function(){update();}});
-        $( "#dateend" ).datepicker({dateFormat: "dd.mm.yy", firstDay: 1, onSelect: function(){update();}});
+        $( "#datestart" ).datepicker({beforeShowDay: $.datepicker.noWeekends, dateFormat: "dd.mm.yy", firstDay: 1, onSelect: function(){update();}});
+        $( "#dateend" ).datepicker({beforeShowDay: $.datepicker.noWeekends, dateFormat: "dd.mm.yy", firstDay: 1, onSelect: function(){update();}});
         $( "#wv" ).datepicker({dateFormat: "dd.mm.yy", firstDay: 1, onSelect: function(){update();}});
         $( "#auslage_wv_start" ).datepicker({dateFormat: "dd.mm.yy", firstDay: 1, onSelect: function(){update();}});
         $( "#auslage_wv_ende" ).datepicker({dateFormat: "dd.mm.yy", firstDay: 1, onSelect: function(){update();}});

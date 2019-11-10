@@ -1,39 +1,13 @@
 var wahlbekanntmachung_link = ""
 
+//beim aufruf der Seite
 function index_onload(){
+    // link zur Wahlbekanntmachung speichern
     wahlbekanntmachung_link = document.getElementById("wahlbekanntmachung_link").href
-
+    update()
 }
 
-function bekanntmachung_onload(){
-    //alert(window.location)
-    var url_string = window.location//"http://www.example.com/t.html?a=1&b=3&c=m2-m3-m4-m5"; //window.location.href
-    var url = new URL(url_string);
-    var first_day = url.searchParams.get("start");
-    var last_day = url.searchParams.get("end");
-    var first_day = $( "#datestart" ).datepicker( "getDate" );
-    first_day = new Date(first_day)
-    
-    var last_day  = $( "#dateend" ).datepicker( "getDate" );
-    last_day = new Date(last_day)
-    
-    updateDates(first_day, last_day)
-    
-
-}
-
-function update_button_clicked(){
-    update_fsvfsr()
-    update_fs_name()
-    
-    var first_day = $( "#datestart" ).datepicker( "getDate" );
-    var last_day  = $( "#dateend" ).datepicker( "getDate" );
-    
-    var formatstring = "dd.mm.yy";
-    update_wahlzeitraum($.datepicker.formatDate( formatstring, first_day),$.datepicker.formatDate( formatstring, last_day))
-    
-}
-
+//update Link und Fristen
 function update(){
   var first_day = $( "#datestart" ).datepicker( "getDate" );
   var last_day  = $( "#dateend" ).datepicker( "getDate" );
@@ -66,70 +40,6 @@ function updateWochentag(first_day, last_day){
     $("#wochentag_2").css("color","green");
   else 
     $("#wochentag_2").css("color","red");
-}
-
-//updatet das zu wählende Gremium
-function update_fsvfsr(gremium)
-{   
-    var gremium = "Fachschaftsrat"
-    var derdesfsvfsr = "des"
-    var diederfsvfsr = "der"
-    var diedenfsvfsr = "den"
-    
-    var zahl_sitze = 11
-    if ($( "#anzwahlberechtigte" ).val() > 500)
-    {
-        gremium = "Fachschaftsvertretung"
-        derdesfsvfsr = "der"
-        diederfsvfsr = "die"
-        diedenfsvfsr = "die"
-        
-        if($( "#anzwahlberechtigte" ).val() > 2000)
-            zahl_sitze = 19
-        else if($( "#anzwahlberechtigte" ).val() > 1000)
-            zahl_sitze = 15
-    }
-    if ($( "#fsvsatzung" ).is(":checked"))
-    
-    {
-        gremium = "Fachschaftsvertretung"
-        derdesfsvfsr = "der"
-        diederfsvfsr = "die"
-        diedenfsvfsr = "die"
-    }
-    for (const element of document.getElementsByClassName('fsvfsr')){
-        element.innerHTML = gremium
-    }
-    for (const element of document.getElementsByClassName('derdesfsvfsr')){
-        element.innerHTML = derdesfsvfsr
-    }
-    for (const element of document.getElementsByClassName('diederfsvfsr')){
-        element.innerHTML = diederfsvfsr
-    }
-    for (const element of document.getElementsByClassName('diedenfsvfsr')){
-        element.innerHTML = diedenfsvfsr
-    }
-    for (const element of document.getElementsByClassName('zahl_sitze')){
-        element.innerHTML = zahl_sitze
-    }
-}
-
-// updatet den Name der Fachschaft
-function update_fs_name()
-{
-    for (const element of document.getElementsByClassName('fachschaft')){
-        element.innerHTML = $( "#fsname" ).val()
-    }
-}
-
-//updatet den Wahlzeitraum
-function update_wahlzeitraum(first_day,last_day)
-{
-    var zeitraum = "von "+ first_day + " bis " + last_day
-   
-    for (const element of document.getElementsByClassName('wahlzeitraum')){
-        element.innerHTML = zeitraum
-    }
 }
 
 function updateDates(first_day, last_day){
