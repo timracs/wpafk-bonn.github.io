@@ -13,13 +13,16 @@ function bekanntmachung_onload(){
     if (last_day){
         last_day = new Date(last_day)
         $( "#dateend" ).datepicker( "setDate" ,last_day)
-    } 
-    
+    }
+    if(first_day && last_day)
+    { 
+        var anz_wahltage = new Date(last_day).getDate() - new Date(first_day).getDate()
+        for (var i = 0; i <= anz_wahltage;i++)
+        {
+            add_urnenstandort()
+        }
+    }
     update()
-   
-    
-    
-
 }
 
 function update(){
@@ -91,6 +94,9 @@ function update(){
         maxDate: temp_day_2 
 
         }); 
+    
+    
+    
         
     update_button_clicked()
                
@@ -118,6 +124,20 @@ function update_button_clicked(){
     update_auszaehlung($("#auszaehlung_datum").val(),$("#auszaehlung_zeit").val(),$("#auszaehlung_ort").val())
     
     update_konsti($("#konsti_datum").val(),$("#konsti_zeit").val(),$("#konsti_ort").val())
+    
+    
+
+    
+    //begrenze Auswahlmöglichkeiten auf Wahlzeitraum
+    var first_day = $( "#datestart" ).datepicker( "getDate" );
+    var last_day  = $( "#dateend" ).datepicker( "getDate" );
+    if(first_day != null && last_day != null){
+        $(".datepicker" ).datepicker('option',{
+        minDate: first_day,
+        maxDate: last_day 
+
+        });     }
+    
 }
 
 // updatet den Wochentag hinter den Eingabefeldern für erster und letzter Wahltag
@@ -274,3 +294,28 @@ function update_wahlzeitraum(first_day,last_day)
     }
 }
 
+//fügt einen urnenstandort hinzu
+function add_urnenstandort()
+{
+    var vorlage = document.getElementById("urnen_standort_hiddenexample")
+    var clone = vorlage.cloneNode(true);
+    clone.id = ""
+    clone.style=""
+    vorlage.parentNode.appendChild(clone);
+    $( clone ).find(".datepicker" ).datepicker({beforeShowDay: $.datepicker.noWeekends, dateFormat: "dd.mm.yy", firstDay: 1, onSelect: function(){update();}});
+    $('.clockpicker').clockpicker();
+    
+    //begrenze Auswahlmöglichkeiten auf Wahlzeitraum
+    var first_day = $( "#datestart" ).datepicker( "getDate" );
+    var last_day  = $( "#dateend" ).datepicker( "getDate" );
+    if(first_day != null && last_day != null){
+        $( clone ).find(".datepicker" ).datepicker('option',{
+        minDate: first_day,
+        maxDate: last_day 
+
+        });     }
+}
+function delete_urnenstandort(element)
+{
+    document.getElementById("urnenstandorte").removeChild(element.parentNode.parentNode.parentNode)
+}

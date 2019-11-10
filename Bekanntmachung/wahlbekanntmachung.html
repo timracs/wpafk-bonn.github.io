@@ -67,9 +67,24 @@
         </div>
         <!-- Formulardaten -->
         <div id="wahl_data" class="no-print" >
-            <h2>Wahltage</h2>
-        
+            <h2>Daten:</h2>
+            
             <div class="form-horizontal">
+                
+                <!-- update button-->
+                <div class="form-group">
+                    <!--label for="" class="col-sm-2 control-label">Wahl einer FSV ist in der Fachschaftssatzung vorgeschrieben</label-->
+                    <div class="col-sm-2">
+                        <button class="form-control" id="update" onclick="update_button_clicked()">Update</button>
+                    </div>
+	            
+	            <!-- drucken button-->
+                
+                    <div class="col-sm-2">
+                        <button class="form-control" id="update"  onclick="window.print();return false;" />Drucken</button>
+                    </div>
+	            </div> 
+	            
 	            <div class="form-group">
 	                <label for="datestart" class="col-sm-2 control-label">Erster Wahltag</label>
 	                <div class="col-sm-2">
@@ -207,20 +222,54 @@
                     </div>
                     
                 </div>
-               
-                <!-- update button-->
+                
+                <h2> Urnenstandorte </h2>
                 <div class="form-group">
                     <!--label for="" class="col-sm-2 control-label">Wahl einer FSV ist in der Fachschaftssatzung vorgeschrieben</label-->
-                    <div class="col-sm-2">
-                        <button class="form-control" id="update" onclick="update_button_clicked()">Update</button>
+                    <div class="col-sm-4">
+                        <button class="form-control" id="update" onclick="add_urnenstandort()">Urnenstandort hinzufügen</button>
                     </div>
-	            
-	            <!-- drucken button-->
-                
-                    <div class="col-sm-2">
-                        <button class="form-control" id="update"  onclick="window.print();return false;" />Drucken</button>
+                </div>
+                <div id="urnenstandorte">
+                    <div id="urnen_standort_hiddenexample" class="urnenstandort" style="display:None" >
+                        <h3> Urnenstandort</h3>
+                        <div class="form-group">
+                            <!--label for="" class="col-sm-2 control-label">Wahl einer FSV ist in der Fachschaftssatzung vorgeschrieben</label-->
+                            <div class="col-sm-4">
+                                <button class="form-control" id="update" onclick="delete_urnenstandort(this)">diesen Urnenstandort entfernen</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Datum:</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control datepicker" value="18.11.2019">
+                            </div>
+                            <label class="col-sm-2 control-label">von: </label>
+                            <div class="col-sm-2 input-group clockpicker" data-autoclose="true">
+                                <input type="text" class="form-control" value="10:00">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-time"></span>
+                                 </span>
+                            </div>   
+                            
+                         </div>   
+                         <div class="form-group">
+                            <label class="col-sm-2 control-label">Ort:</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" value="im Foyer">
+                            </div>
+                            
+                            
+                            <label class="col-sm-2 control-label">bis: </label>
+                            <div class="col-sm-2 input-group clockpicker" data-autoclose="true">
+                                <input type="text" class="form-control" value="18:00">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-time"></span>
+                                 </span>
+                            </div>
+                        </div>
                     </div>
-	            </div>       
+                </div>      
             </div>   
         </div>
 
