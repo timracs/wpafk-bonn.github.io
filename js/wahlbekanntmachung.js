@@ -5,11 +5,15 @@ function bekanntmachung_onload(){
     var first_day = url.searchParams.get("start");
     var last_day = url.searchParams.get("end");
     
-    first_day = new Date(first_day)
-    $( "#datestart" ).datepicker( "setDate" ,first_day)
+    if (first_day){
+        first_day = new Date(first_day)
+        $( "#datestart" ).datepicker( "setDate" ,first_day)
+    }
     
-    last_day = new Date(last_day)
-    $( "#dateend" ).datepicker( "setDate" ,last_day)
+    if (last_day){
+        last_day = new Date(last_day)
+        $( "#dateend" ).datepicker( "setDate" ,last_day)
+    } 
     
     update()
    
@@ -27,27 +31,33 @@ function update(){
     }
     //setze möglichen Zeitraum für Frist zum Einreichen der Wahlvorschläge
     var temp_day_1 = new Date(first_day)
-    temp_day_1.setDate(temp_day_1.getDate() - 10);
     var temp_day_2 = new Date(first_day)
-    temp_day_2.setDate(temp_day_2.getDate() - 13);
-    $('#wv').datepicker('option',{
-        minDate: temp_day_2,
-        maxDate: temp_day_1 
+    
+    if (first_day)
+    {
+        temp_day_1.setDate(temp_day_1.getDate() - 10);
+        
+        temp_day_2.setDate(temp_day_2.getDate() - 13);
+        $('#wv').datepicker('option',{
+            minDate: temp_day_2,
+            maxDate: temp_day_1 
 
-        });
+            });
     
-    // auslage Wählendenverzeichnis
-    temp_day_1 = $( "#wv" ).datepicker( "getDate" );
-    temp_day_1.setDate(temp_day_1.getDate() - 3);
-    
-    temp_day_2 = new Date(first_day)
-    temp_day_2.setDate(temp_day_2.getDate() - 30);
-    $('#auslage_wv_start').datepicker('option',{
-        minDate: temp_day_2,
-        maxDate: temp_day_1 
+        // auslage Wählendenverzeichnis
+        temp_day_1 = $( "#wv" ).datepicker( "getDate" );
+        if(temp_day_1){
+            temp_day_1.setDate(temp_day_1.getDate() - 3);
+            
+            temp_day_2 = new Date(first_day)
+            temp_day_2.setDate(temp_day_2.getDate() - 30);
+            $('#auslage_wv_start').datepicker('option',{
+                minDate: temp_day_2,
+                maxDate: temp_day_1 
 
-        });
-    
+                });
+        }
+    }
     temp_day_1 = $( "#wv" ).datepicker( "getDate" );
     //temp_day_1.setDate(temp_day_1.getDate());
     
@@ -80,7 +90,10 @@ function update(){
         minDate: temp_day_1,
         maxDate: temp_day_2 
 
-        });        
+        }); 
+        
+    update_button_clicked()
+               
 }
 
 function update_button_clicked(){
