@@ -125,7 +125,7 @@ function update_button_clicked(){
     
     update_konsti($("#konsti_datum").val(),$("#konsti_zeit").val(),$("#konsti_ort").val())
     
-    
+    update_urnenstandorte()
 
     
     //begrenze Auswahlmöglichkeiten auf Wahlzeitraum
@@ -294,6 +294,48 @@ function update_wahlzeitraum(first_day,last_day)
     }
 }
 
+function update_urnenstandorte()
+{   
+    //lösche alle vorher hinzugefügten
+    $(".urnenstandort_script_added").each(function(){this.parentNode.removeChild(this)})
+    
+    var data = []
+    var urnenstandorte = document.getElementById("urnenstandorte")
+    //kopie erstellen
+    urnenstandorte = urnenstandorte.cloneNode(true)
+    //beispiel entfernen
+    //urnenstandorte.removeChild(document.getElementById( "urnen_standort_hiddenexample" ))
+    
+    $( urnenstandorte ).find(".urnenstandort").not( "#urnen_standort_hiddenexample" ).each(function(){data.push(get_urnenstandort(this))})
+
+    console.log(data)
+
+    for( i = 0 ; i<  data.length;i++)
+    {
+        //alert(data[i])
+        var vorlage = document.getElementById("urnen_standort_table_hiddenexample")
+        var clone = vorlage.cloneNode(true)
+        clone.id = ""
+        clone.style=""
+        clone.setAttribute("class","urnenstandort_script_added")
+        $( clone ).find(".urnenstandort_datum" ).text(data[i].datum)
+        $( clone ).find(".urnenstandort_beginn" ).text(data[i].beginn)
+        $( clone ).find(".urnenstandort_ende" ).text(data[i].end)
+        $( clone ).find(".urnenstandort_ort" ).text(data[i].ort)
+        document.getElementById("urnenstandorte_table").appendChild(clone)
+    }
+}
+
+function get_urnenstandort(urnenstandort)
+{
+    var data = {}
+    data.datum = urnenstandort.getElementsByClassName("urnenstandort_datum")[0].value
+    data.ort = urnenstandort.getElementsByClassName("urnenstandort_ort")[0].value
+    data.beginn = urnenstandort.getElementsByClassName("urnenstandort_start")[0].value
+    data.end = urnenstandort.getElementsByClassName("urnenstandort_end")[0].value
+    return data
+}
+
 //fügt einen urnenstandort hinzu
 function add_urnenstandort()
 {
@@ -301,6 +343,7 @@ function add_urnenstandort()
     var clone = vorlage.cloneNode(true);
     clone.id = ""
     clone.style=""
+    
     vorlage.parentNode.appendChild(clone);
     $( clone ).find(".datepicker" ).datepicker({beforeShowDay: $.datepicker.noWeekends, dateFormat: "dd.mm.yy", firstDay: 1, onSelect: function(){update();}});
     $('.clockpicker').clockpicker();
