@@ -66,6 +66,7 @@
             </ul>
         </div>
         <!-- Formulardaten -->
+        <form id='test'>
         <div id="wahl_data" class="no-print" >
             <h2>Daten:</h2>
             
@@ -75,20 +76,24 @@
                 <div class="form-group">
                     <!--label for="" class="col-sm-2 control-label">Wahl einer FSV ist in der Fachschaftssatzung vorgeschrieben</label-->
                     <div class="col-sm-2">
-                        <button class="form-control" id="update" onclick="update_button_clicked()">Update</button>
+                        <button type="button" class="form-control" id="update" name="update" onclick="update_button_clicked()">Update</button>
                     </div>
 	            
 	            <!-- drucken button-->
                 
                     <div class="col-sm-2">
-                        <button class="form-control" id="update"  onclick="window.print();return false;" />Drucken</button>
+                        <button type="button" class="form-control" id="print" name="print"  onclick="window.print();return false;" />Drucken</button>
+                    </div>
+                <!-- generate link button-->    
+                    <div class="col-sm-2">
+                        <button type="button" class="form-control" id="generate_link" name="generate_link"  onclick="gen_link()" />Link</button>
                     </div>
 	            </div> 
 	            
 	            <div class="form-group">
 	                <label for="datestart" class="col-sm-2 control-label">Erster Wahltag</label>
 	                <div class="col-sm-2">
-	                <input type="text" class="form-control" id="datestart" value="11.11.2019">
+	                <input type="text" class="form-control" name="datestart" id="datestart" value="11.11.2019">
 	                </div>
 	                <div>
 	                    <p id="wochentag_1"></p> 
@@ -98,7 +103,7 @@
 	            <div class="form-group">
 	                <label for="dateend" class="col-sm-2 control-label">Letzter Wahltag</label>
 	                <div class="col-sm-2">
-	                    <input type="text" class="form-control" id="dateend" value="14.11.2019">
+	                    <input type="text" class="form-control" id="dateend" name="dateend" value="14.11.2019">
 	                </div>
 	                <div>
 	                    <p id="wochentag_2"></p> 
@@ -109,7 +114,7 @@
                 <div class="form-group">
                     <label for="fsname" class="col-sm-2 control-label">wählende Fachschaft:</label>
                     <div class="col-sm-2">
-                        <input type="text" class="form-control" id="fsname" value="YOLO">
+                        <input type="text" class="form-control" id="fsname" name="fsname" value="YOLO">
                     </div>
                 </div>
                 
@@ -117,7 +122,7 @@
                 <div class="form-group">
                     <label for="anzwahlberechtigte" class="col-sm-2 control-label">Anzahl der Wahlberechtigten:</label>
                     <div class="col-sm-2">
-                        <input type="number" class="form-control" id="anzwahlberechtigte" value="750">
+                        <input type="number" class="form-control" id="anzwahlberechtigte" name="anzwahlberechtigte" value="750">
                     </div>
                 </div>
                 
@@ -125,7 +130,7 @@
                 <div class="form-group">
                     <label for="fsvsatzung" class="col-sm-2 control-label">Wahl einer FSV ist in der Fachschaftssatzung vorgeschrieben</label>
                     <div class="col-sm-2">
-                        <input type="checkbox" class="form-control" id="fsvsatzung">
+                        <input type="checkbox" class="form-control" id="fsvsatzung" name="fsvsatzung">
                     </div>
 	                  
                 </div>  
@@ -135,11 +140,11 @@
                     <div class="form-group">
                         <label for="wahlleitung" class="col-sm-2 control-label">Wahlleitung:</label>
                         <div class="col-sm-2">
-                            <input type="text" class="form-control" id="wahlleitung" value="MisterX">
+                            <input type="text" class="form-control" id="wahlleitung" name="wahlleitung" value="MisterX">
                         </div>
                         <label for="wahlleitungkontakt" class="col-sm-2 control-label">Kontakt:</label>
                         <div class="col-sm-2">
-                            <input type="text" class="form-control" id="wahlleitungkontakt" value="misterX@uni-bonn.de">
+                            <input type="text" class="form-control" id="wahlleitungkontakt" name="wahlleitungkontakt" value="misterX@uni-bonn.de">
                         </div>
                     </div>
                 </div>
@@ -147,12 +152,12 @@
                 <div class="form-group">
 	                <label for="wv" class="col-sm-2 control-label">Gemeinsame Frist für die Einreichung von Kandidaturen, Briefwahlanträgen und Einsprüchen gegen das Wählendenverzeichnis</label>
 	                <div class="col-sm-2">
-	                    <input type="text" class="form-control" id="wv" value="1.11.2019">
+	                    <input type="text" class="form-control" id="wv" name="wv" value="1.11.2019">
 	                </div>
 	                <label for="wvtime" class="col-sm-2 control-label">Zeit:</label>
 	                <div class="form-group">
                         <div class="col-sm-2 input-group clockpicker" data-autoclose="true">
-                            <input id="wvtime" type="text" class="form-control" value="18:00">
+                            <input id="wvtime" name="wvtime" type="text" class="form-control" value="18:00">
                             <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-time"></span>
                              </span>
@@ -165,15 +170,15 @@
                     <div class="form-group">
                         <label for="auslage_wv_start" class="col-sm-2 control-label">Auslage des Wählendenverzeichnisses:</label>
                         <div class="col-sm-2">
-                            <input type="text" class="form-control" id="auslage_wv_start" value="29.10.2019">
+                            <input type="text" class="form-control" id="auslage_wv_start" name="auslage_wv_start" value="29.10.2019">
                         </div>
                         <label for="auslage_wv_ende" class="col-sm-2 control-label">bis: </label>
                         <div class="col-sm-2">
-                            <input type="text" class="form-control" id="auslage_wv_ende" value="1.11.2019">
+                            <input type="text" class="form-control" id="auslage_wv_ende" name="auslage_wv_ende" value="1.11.2019">
                         </div>
                         <label for="auslage_wv_ort" class="col-sm-2 control-label">Ort:</label>
                         <div class="col-sm-2">
-                            <input type="text" class="form-control" id="auslage_wv_ort" value="im Fachschaftsbüro">
+                            <input type="text" class="form-control" id="auslage_wv_ort" name="auslage_wv_ort" value="im Fachschaftsbüro">
                         </div>
                     </div>
                 </div>
@@ -182,17 +187,17 @@
                     <div class="form-group">
                         <label for="auszaehlung_datum" class="col-sm-2 control-label">Auszählung der Stimmen:</label>
                         <div class="col-sm-2">
-                            <input type="text" class="form-control" id="auszaehlung_datum" value="13.11.2019">
+                            <input type="text" class="form-control" id="auszaehlung_datum" name="auszaehlung_datum" value="13.11.2019">
                         </div>
                         
                         <label for="auszaehlung_ort" class="col-sm-2 control-label">Ort:</label>
                         <div class="col-sm-2">
-                            <input type="text" class="form-control" id="auszaehlung_ort" value="im Foyer">
+                            <input type="text" class="form-control" id="auszaehlung_ort" name="auszaehlung_ort" value="im Foyer">
                         </div>
                         
                         <label for="auszaehlung_zeit" class="col-sm-2 control-label">Uhrzeit: </label>
                         <div class="col-sm-2 input-group clockpicker" data-autoclose="true">
-                            <input id="auszaehlung_zeit" type="text" class="form-control" value="18:00">
+                            <input id="auszaehlung_zeit" name="auszaehlung_zeit" type="text" class="form-control" value="18:00">
                             <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-time"></span>
                              </span>
@@ -205,17 +210,17 @@
                 <div class="form-group">
                     <label for="konsti_datum" class="col-sm-2 control-label">Konstituierende Sitzung:</label>
                     <div class="col-sm-2">
-                        <input type="text" class="form-control" id="konsti_datum" value="18.11.2019">
+                        <input type="text" class="form-control" id="konsti_datum" name="konsti_datum" value="18.11.2019">
                     </div>
                     
                     <label for="konsti_ort" class="col-sm-2 control-label">Ort:</label>
                     <div class="col-sm-2">
-                        <input type="text" class="form-control" id="konsti_ort" value="in Raum 0.016">
+                        <input type="text" class="form-control" id="konsti_ort" name="konsti_ort" value="in Raum 0.016">
                     </div>
                     
                     <label for="konsti_zeit" class="col-sm-2 control-label">Uhrzeit: </label>
                     <div class="col-sm-2 input-group clockpicker" data-autoclose="true">
-                        <input id="konsti_zeit" type="text" class="form-control" value="18:00">
+                        <input id="konsti_zeit" name="konsti_zeit" type="text" class="form-control" value="18:00">
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-time"></span>
                          </span>
@@ -227,7 +232,7 @@
                 <div class="form-group">
                     <!--label for="" class="col-sm-2 control-label">Wahl einer FSV ist in der Fachschaftssatzung vorgeschrieben</label-->
                     <div class="col-sm-4">
-                        <button class="form-control" id="update" onclick="add_urnenstandort()">Urnenstandort hinzufügen</button>
+                        <button class="form-control" id="update" name="update" onclick="add_urnenstandort()">Urnenstandort hinzufügen</button>
                     </div>
                 </div>
                 <div id="urnenstandorte">
@@ -272,7 +277,7 @@
                 </div>      
             </div>   
         </div>
-
+        </form>
         
         <br/>
         

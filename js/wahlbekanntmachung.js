@@ -308,7 +308,7 @@ function update_urnenstandorte()
     
     $( urnenstandorte ).find(".urnenstandort").not( "#urnen_standort_hiddenexample" ).each(function(){data.push(get_urnenstandort(this))})
 
-    console.log(data)
+    //console.log(data)
 
     for( i = 0 ; i<  data.length;i++)
     {
@@ -362,3 +362,33 @@ function delete_urnenstandort(element)
 {
     document.getElementById("urnenstandorte").removeChild(element.parentNode.parentNode.parentNode)
 }
+
+
+
+function gen_link()
+{
+    var input_array = $('form').serializeArray()
+    var input_string = btoa(JSON.stringify(input_array,null,2))
+    console.log(input_string)
+    console.log(JSON.parse(atob(input_string)))
+    
+    
+}
+
+function fill_out_form_base64(base64_string)
+{
+    fill_out_form(atob(base64_string))
+}
+
+function fill_out_form(json_string)
+{
+    var json = JSON.parse(json_string)
+    for(key in json)
+    {
+        console.log(key)
+        if(json.hasOwnProperty(key))
+            $('input[name='+json[key]['name']+']').val(json[key]['value']);
+    }
+
+}
+
