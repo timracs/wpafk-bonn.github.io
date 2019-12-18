@@ -66,7 +66,7 @@
             </ul>
         </div>
         <!-- Formulardaten -->
-        <form id='test'>
+        <form>
         <div id="wahl_data" class="no-print" >
             <h2>Daten:</h2>
             
@@ -86,7 +86,8 @@
                     </div>
                 <!-- generate link button-->    
                     <div class="col-sm-2">
-                        <button type="button" class="form-control" id="generate_link" name="generate_link"  onclick="gen_link()" />Link</button>
+                        <button type="button" class="form-control" id="generate_link" name="generate_link" title="hier soll ein link stehen" onclick="copy_link()" />Kopiere Link</button>
+                        <textarea id="link-copy-area" class="hidden"></textarea>
                     </div>
 	            </div> 
 	            

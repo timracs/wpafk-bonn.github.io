@@ -4,22 +4,29 @@ function bekanntmachung_onload(){
     var url = new URL(url_string);
     var first_day = url.searchParams.get("start");
     var last_day = url.searchParams.get("end");
-    
-    if (first_day){
-        first_day = new Date(first_day)
-        $( "#datestart" ).datepicker( "setDate" ,first_day)
+    var data = url.searchParams.get("data");
+    if (data)
+    {
+        fill_out_form_base64(data)
     }
-    
-    if (last_day){
-        last_day = new Date(last_day)
-        $( "#dateend" ).datepicker( "setDate" ,last_day)
-    }
-    if(first_day && last_day)
-    { 
-        var anz_wahltage = new Date(last_day).getDate() - new Date(first_day).getDate()
-        for (var i = 0; i <= anz_wahltage;i++)
-        {
-            add_urnenstandort()
+    else
+    {
+        if (first_day){
+            first_day = new Date(first_day)
+            $( "#datestart" ).datepicker( "setDate" ,first_day)
+        }
+        
+        if (last_day){
+            last_day = new Date(last_day)
+            $( "#dateend" ).datepicker( "setDate" ,last_day)
+        }
+        if(first_day && last_day)
+        { 
+            var anz_wahltage = new Date(last_day).getDate() - new Date(first_day).getDate()
+            for (var i = 0; i <= anz_wahltage;i++)
+            {
+                add_urnenstandort()
+            }
         }
     }
     update()
@@ -99,7 +106,7 @@ function update(){
     
         
     update_button_clicked()
-               
+          
 }
 
 function update_button_clicked(){
@@ -137,7 +144,7 @@ function update_button_clicked(){
         maxDate: last_day 
 
         });     }
-    
+    update_link() 
 }
 
 // updatet den Wochentag hinter den Eingabefeldern für erster und letzter Wahltag
@@ -365,14 +372,30 @@ function delete_urnenstandort(element)
 
 
 
-function gen_link()
+function update_link()
 {
     var input_array = $('form').serializeArray()
     var input_string = btoa(JSON.stringify(input_array,null,2))
-    console.log(input_string)
-    console.log(JSON.parse(atob(input_string)))
+    //console.log(input_string)
+    //console.log(JSON.parse(atob(input_string)))
+    var textfield = document.getElementById("link-copy-area")
+    var getUrl = window.location
+    textfield.value = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname + "?data=" + input_string
+    var button = document.getElementById("generate_link")
+    button.title = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname + "?data=" + input_string
     
-    
+    //copy_link()
+   
+}
+
+function copy_link()
+{
+    var textfield = document.getElementById("link-copy-area")
+    textfield.setAttribute("class","")
+    textfield.select()
+    textfield.focus()
+    document.execCommand('copy')
+    textfield.setAttribute("class","hidden")
 }
 
 function fill_out_form_base64(base64_string)
