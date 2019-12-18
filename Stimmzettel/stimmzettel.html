@@ -1,0 +1,183 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Stimmzettel</title>
+
+    <script>
+        window.onload = function () {
+            stimmzettel_onload()
+            
+            
+        }
+    </script>
+     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="../js/jquery-2.1.4.min.js"></script>
+    <script src="../js/jquery-ui.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/create_link.js"></script>
+    <script src="../js/stimmzettel.js"></script>
+    <script src="../js/jquery-clockpicker.min.js"></script>
+    <script src="../js/datepicker-de.js"></script>
+    
+    <!-- Bootstrap -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/jquery-ui.min.css" rel="stylesheet">
+    <link href="../css/jquery-clockpicker.min.css" rel="stylesheet">
+    
+    <style>
+        @media print
+        {    
+            .no-print, .no-print *
+            {
+                display: none !important;
+            }
+        }
+    </style>
+    
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+    td.wb {
+	color: #070;
+    }
+    </style>
+</head>
+<body>
+    <div class="container" id="content">
+        <div class="no-print" id="menu">
+            <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" href="../index.html">Wahlfristen</a>
+            </li>
+            <li class="nav-item">
+                <a id="wahlbekanntmachung_link" class="nav-link" href="../Wahlbekanntmachung/wahlbekanntmachung.html?">Wahlbekanntmachung</a>
+            </li>
+            <li class="nav-item disabled">
+                <a class="nav-link" href="#" aria-disabled="true">Stimmzettel</a>
+            </li>
+
+            </ul>
+        </div>
+        <!-- Formulardaten -->
+        <form id='test'>
+        <div id="wahl_data" class="no-print" >
+            <h2>Daten:</h2>
+            
+            <div class="form-horizontal">
+                
+                <!-- update button-->
+                <div class="form-group">
+                    <!--label for="" class="col-sm-2 control-label">Wahl einer FSV ist in der Fachschaftssatzung vorgeschrieben</label-->
+                    <div class="col-sm-2">
+                        <button type="button" class="form-control" id="update" name="update" onclick="update_button_clicked()">Update</button>
+                    </div>
+	            
+	            <!-- drucken button-->
+                
+                    <div class="col-sm-2">
+                        <button type="button" class="form-control" id="print" name="print"  onclick="window.print();return false;" />Drucken</button>
+                    </div>
+                <!-- generate link button-->    
+                    <div class="col-sm-2">
+                        <button type="button" class="form-control" id="generate_link" name="generate_link"  onclick="gen_link()" />Link</button>
+                         <textarea id="link-copy-area" class="hidden"></textarea>
+                    </div>
+	            </div> 
+	            
+	                        
+	            <!-- Wählende Fachschaft-->
+                <div class="form-group">
+                    <label for="fsname" class="col-sm-2 control-label">wählende Fachschaft:</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" id="fsname" name="fsname" value="YOLO">
+                    </div>
+                </div>
+                
+                <!-- Anzahl Wahlberechtigte-->
+                <div class="form-group">
+                    <label for="anzwahlberechtigte" class="col-sm-2 control-label">Anzahl der Wahlberechtigten:</label>
+                    <div class="col-sm-2">
+                        <input type="number" class="form-control" id="anzwahlberechtigte" name="anzwahlberechtigte" value="750">
+                    </div>
+                </div>
+                
+                <!-- FSV in Satzung-->
+                <div class="form-group">
+                    <label for="fsvsatzung" class="col-sm-2 control-label">Wahl einer FSV ist in der Fachschaftssatzung vorgeschrieben</label>
+                    <div class="col-sm-2">
+                        <input type="checkbox" class="form-control" id="fsvsatzung" name="fsvsatzung">
+                    </div>
+	                  
+                </div>  
+                 <!-- Format-->
+                <div class="form-group">
+                    <label for="format" class="col-sm-2 control-label">Format der Stimmzettel</label>
+                    <div class="col-sm-2">
+                        <select name="format" >
+                            <option value="A4">Din A4</option>
+                            <option value="A5" selected>Din A5</option>
+                            <option value="A6">Din A6</option>
+                        </select> 
+                    </div>
+	                  
+                </div>  
+                <h2> Kandidaturen </h2>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Anzahl zu wählender Mitglieder:</label>
+                    <div class="col-sm-2">
+                        <input type="number" class="form-control" id="zahl_sitze" name="zahl_sitze" value="11" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-4">
+                        <button type="button" class="form-control" id="update" name="update" onclick="add_kandidatur()">Kanditatur hinzufügen</button>
+                    </div>
+                </div>
+                <div id="kandidaturen">
+                    <div id="kandidatur_hiddenexample" class="kandidatur" style="display:None" >
+                         <div class="form-group">
+                            <label class="col-sm-1 control-label">Name:</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control kandidatur_name" value="Max Maria Musterperson">
+                            </div> 
+                            <div class="col-sm-3">
+                                <button type="button" class="form-control" onclick="delete_kandidatur(this)">diese Kandidatur entfernen</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>      
+                  
+            </div>   
+        </div>
+        </form>
+    
+        <div id="stimmzettel" class="A5">
+            <h1> Stimmzettel <h1>
+            <h2> Wahl <span class="zurzumfsvfsr">zur/zum</span> <span class="fsvfsr">Fachschaftsvertretung/Fachschaftsrat</span> der Fachschaft <span class="fachschaft">YoLO</span> </h2>
+            <p> Du kannst <b>eine</b> Stimme abgeben. </p>
+            <p> Es sind <b><span class="zahl_sitze">11</span> Mitglieder</b> in <span class="diedenfsvfsr">den/die</span> <span class="fsvfsr">Fachschaftsvertretung/Fachschaftsrat</span>  zu wählen.
+            <div id="stimmzettel_kandidaturen">
+                <h3> Kandidierende: </h3>
+                <div id="stimmzettel_kandidatur_hiddenexample" class="row" style="display:none">
+                    <div class="col-sm-7">
+                        <p> &#9711; <span class="name1">Maxi Muster</span> </p>
+                    </div>
+                    
+                </div>    
+            </div>
+        </div> 
+        
+    </div>
+        
+      	
+</body>
+
+</html>
