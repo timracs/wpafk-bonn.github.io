@@ -60,7 +60,7 @@
                 <a id="wahlbekanntmachung_link" class="nav-link" href="#">Wahlbekanntmachung</a>
             </li>
             <li class="nav-item disabled">
-                <a class="nav-link" href="#" aria-disabled="true">Stimmzettel</a>
+                <a class="nav-link" href="../Stimmzettel/stimmzettel.html" aria-disabled="true">Stimmzettel</a>
             </li>
 
             </ul>
@@ -233,7 +233,7 @@
                 <div class="form-group">
                     <!--label for="" class="col-sm-2 control-label">Wahl einer FSV ist in der Fachschaftssatzung vorgeschrieben</label-->
                     <div class="col-sm-4">
-                        <button class="form-control" id="update" name="update" onclick="add_urnenstandort()">Urnenstandort hinzufügen</button>
+                        <button type="button" class="form-control" id="update" name="update" onclick="add_urnenstandort()">Urnenstandort hinzufügen</button>
                     </div>
                 </div>
                 <div id="urnenstandorte">
@@ -242,7 +242,7 @@
                         <div class="form-group">
                             <!--label for="" class="col-sm-2 control-label">Wahl einer FSV ist in der Fachschaftssatzung vorgeschrieben</label-->
                             <div class="col-sm-4">
-                                <button class="form-control" id="update" onclick="delete_urnenstandort(this)">diesen Urnenstandort entfernen</button>
+                                <button type="button" class="form-control" id="update" onclick="delete_urnenstandort(this)">diesen Urnenstandort entfernen</button>
                             </div>
                         </div>
                         <div class="form-group">
@@ -379,5 +379,3 @@
         $('.clockpicker').clockpicker();
     </script>
 </html>
-
-    </div>
