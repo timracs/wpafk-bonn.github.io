@@ -87,7 +87,7 @@
                     </div>
                 <!-- generate link button-->    
                     <div class="col-sm-2">
-                        <button type="button" class="form-control" id="generate_link" name="generate_link"  onclick="gen_link()" />Link</button>
+                        <button type="button" class="form-control" id="generate_link" name="generate_link"  onclick="copy_link()" />Link</button>
                          <textarea id="link-copy-area" class="hidden"></textarea>
                     </div>
 	            </div> 
@@ -121,9 +121,9 @@
                 <div class="form-group">
                     <label for="format" class="col-sm-2 control-label">Format der Stimmzettel</label>
                     <div class="col-sm-2">
-                        <select name="format" >
-                            <option value="A4">Din A4</option>
-                            <option value="A5" selected>Din A5</option>
+                        <select name="format" disabled>
+                            <option value="A4"selected>Din A4</option>
+                            <option value="A5" >Din A5</option>
                             <option value="A6">Din A6</option>
                         </select> 
                     </div>

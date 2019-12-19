@@ -161,7 +161,22 @@ function fill_out_form(json_string)
     var json = JSON.parse(json_string)
     for(key in json)
     {
-        console.log(key)
+        if(json[key]["name"].startsWith("kandidatur"))
+        {
+            
+            var regex = /\d+/
+            var number = regex.exec(json[key]["name"])
+            if (number)
+            {
+                number = number[0]
+                if ($('.kandidatur' + number).length == 0)
+                {
+                    add_kandidatur(number)
+                }
+                $('.' + json[key]["name"]).each(function(){this.value = json[key]["value"]})
+               
+             }
+        }
         if(json.hasOwnProperty(key))
             $('input[name='+json[key]['name']+']').val(json[key]['value']);
     }
