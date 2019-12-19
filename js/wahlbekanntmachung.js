@@ -1,3 +1,5 @@
+var urnencounter=0
+
 function bekanntmachung_onload(){
     //alert(window.location)
     var url_string = window.location
@@ -344,13 +346,18 @@ function get_urnenstandort(urnenstandort)
 }
 
 //fügt einen urnenstandort hinzu
-function add_urnenstandort()
+function add_urnenstandort(number=urnencounter)
 {
     var vorlage = document.getElementById("urnen_standort_hiddenexample")
     var clone = vorlage.cloneNode(true);
     clone.id = ""
     clone.style=""
-    
+    clone.classList.add("urnenstandort" + number)
+    $(clone).find('input').each(function(){this.setAttribute('name',this.getAttribute('name') + number)})
+    if (number <= urnencounter)
+    {
+        urnencounter = number +1
+    }
     vorlage.parentNode.appendChild(clone);
     $( clone ).find(".datepicker" ).datepicker({beforeShowDay: $.datepicker.noWeekends, dateFormat: "dd.mm.yy", firstDay: 1, onSelect: function(){update();}});
     $('.clockpicker').clockpicker();
@@ -364,8 +371,42 @@ function add_urnenstandort()
         maxDate: last_day 
 
         });     }
+    return clone
 }
 function delete_urnenstandort(element)
 {
     document.getElementById("urnenstandorte").removeChild(element.parentNode.parentNode.parentNode)
+}
+
+function fill_out_form_base64(base64_string)
+{
+    fill_out_form(atob(base64_string))
+}
+
+function fill_out_form(json_string)
+{
+    var json = JSON.parse(json_string)
+    for(key in json)
+    {
+        
+        if(json[key]["name"].startsWith("urnenstandort"))
+        {
+            
+            var regex = /\d+/
+            var number = regex.exec(json[key]["name"])
+            if (number)
+            {
+                number = number[0]
+                if ($('.urnenstandort' + number).length == 0)
+                {
+                    add_urnenstandort(number)
+                }
+                $('.' + json[key]["name"]).each(function(){this.value = json[key]["value"]})
+               
+             }
+        }
+        if(json.hasOwnProperty(key))
+            $('input[name='+json[key]['name']+']').val(json[key]['value']);
+    }
+
 }

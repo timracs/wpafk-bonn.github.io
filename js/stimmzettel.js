@@ -1,3 +1,5 @@
+var kandidaturcounter = 0
+
 function stimmzettel_onload(){
     //alert(window.location)
     var url_string = window.location
@@ -133,17 +135,35 @@ function update_fs_name()
 
 
 //fügt einen urnenstandort hinzu
-function add_kandidatur()
+function add_kandidatur(number=kandidaturcounter)
 {
     var vorlage = document.getElementById("kandidatur_hiddenexample")
     var clone = vorlage.cloneNode(true);
     clone.id = ""
     clone.style=""
-    
+    $(clone).find('input').each(function(){this.setAttribute('name',this.getAttribute('name') + number)})
+    kandidaturcounter++
     vorlage.parentNode.appendChild(clone);
     
 }
 function delete_kandidatur(element)
 {
     document.getElementById("kandidaturen").removeChild(element.parentNode.parentNode.parentNode)
+}
+
+function fill_out_form_base64(base64_string)
+{
+    fill_out_form(atob(base64_string))
+}
+
+function fill_out_form(json_string)
+{
+    var json = JSON.parse(json_string)
+    for(key in json)
+    {
+        console.log(key)
+        if(json.hasOwnProperty(key))
+            $('input[name='+json[key]['name']+']').val(json[key]['value']);
+    }
+
 }
