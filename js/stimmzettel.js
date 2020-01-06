@@ -30,6 +30,8 @@ function update_button_clicked(){
     update_kandidaturen()
  
     update_link() 
+    
+    update_format()
 }
 
 
@@ -102,7 +104,7 @@ function update_kandidaturen()
     if (data.length < document.getElementById('zahl_sitze').value)
     {
         //freifeld hinzufügen
-        data.push("_______________________________")
+        data.push("__________________________")
     }
     
     for( i = 0 ; i<  data.length;i++)
@@ -182,3 +184,51 @@ function fill_out_form(json_string)
     }
 
 }
+
+function update_format()
+{
+    if ($( "#format" ).val() == 'A5')
+    {
+        make_a5()
+    }
+    else if ($( "#format" ).val() == 'A4')
+    {
+        make_a4()
+    }
+    else
+    {
+        console.log ($('#format').val())
+       
+    }
+}
+
+function remove_stimmzettel_copys()
+{
+    $('.stimmzettel').each(
+        function(){
+            if  (this.id != 'stimmzettel')
+            {
+                this.remove()
+            }
+        }
+    )
+}
+
+function make_a4()
+{
+    remove_stimmzettel_copys()
+    document.getElementById('stimmzettel-paper').setAttribute('class','a4F') 
+}
+
+function make_a5()
+{   
+    remove_stimmzettel_copys()
+    
+    document.getElementById('stimmzettel-paper').setAttribute('class','a5')
+    
+    var vorlage = document.getElementById("stimmzettel")
+    var clone = vorlage.cloneNode(true);
+    clone.id += '1'
+    vorlage.parentNode.appendChild(clone);
+}
+

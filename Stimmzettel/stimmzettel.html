@@ -28,6 +28,7 @@
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/jquery-ui.min.css" rel="stylesheet">
     <link href="../css/jquery-clockpicker.min.css" rel="stylesheet">
+    <link href="../css/stimmzettel.css" rel="stylesheet">
     
     <style>
         @media print
@@ -129,7 +130,7 @@
                 <div class="form-group">
                     <label for="format" class="col-sm-2 control-label">Format der Stimmzettel</label>
                     <div class="col-sm-2">
-                        <select name="format" disabled>
+                        <select id='format' name="format">
                             <option value="A4"selected>Din A4</option>
                             <option value="A5" >Din A5</option>
                             <option value="A6">Din A6</option>
@@ -166,22 +167,24 @@
             </div>   
         </div>
         </form>
-    
-        <div id="stimmzettel" class="A5">
-            <h1> Stimmzettel <h1>
-            <h2> Wahl <span class="zurzumfsvfsr">zur/zum</span> <span class="fsvfsr">Fachschaftsvertretung/Fachschaftsrat</span> der Fachschaft <span class="fachschaft">YoLO</span> </h2>
-            <p> Du kannst <b>eine</b> Stimme abgeben. </p>
-            <p> Es sind <b><span class="zahl_sitze">11</span> Mitglieder</b> in <span class="diedenfsvfsr">den/die</span> <span class="fsvfsr">Fachschaftsvertretung/Fachschaftsrat</span>  zu wählen.
-            <div id="stimmzettel_kandidaturen">
-                <h3> Kandidierende: </h3>
-                <div id="stimmzettel_kandidatur_hiddenexample" class="row" style="display:none">
-                    <div class="col-sm-7">
-                        <p> &#9711; <span class="name1">Maxi Muster</span> </p>
-                    </div>
-                    
-                </div>    
-            </div>
-        </div> 
+        <div id="stimmzettel-paper" class='a5'>
+            <div id="stimmzettel" class="stimmzettel">
+                <h1> Stimmzettel <h1>
+                <h2> Wahl <span class="zurzumfsvfsr">zur/zum</span> <span class="fsvfsr">Fachschaftsvertretung/Fachschaftsrat</span> der Fachschaft <span class="fachschaft">YoLO</span> </h2>
+                <p> Du kannst <b>eine</b> Stimme abgeben. </p>
+                <p> Es sind <b><span class="zahl_sitze">11</span> Mitglieder</b> in <span class="diedenfsvfsr">den/die</span> <span class="fsvfsr">Fachschaftsvertretung/Fachschaftsrat</span>  zu wählen.
+                <div id="stimmzettel_kandidaturen">
+                    <h3> Kandidierende: </h3>
+                    <div id="stimmzettel_kandidatur_hiddenexample" class="row" style="display:none">
+                        <div class="col-sm-7">
+                            <p> &#9711; <span class="name1">Maxi Muster</span> </p>
+                        </div>
+                        
+                    </div>    
+                </div>
+                <br/>
+            </div> 
+        </div>
         
     </div>
         

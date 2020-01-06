@@ -1,0 +1,9 @@
+.kandidatur_script_added {
+    height: 1.5em
+}
+
+.a5 .stimmzettel{
+    transform: rotate(-90deg);
+    height: 130mm;
+    width: 130mm
+}
