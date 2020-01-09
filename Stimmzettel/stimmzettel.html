@@ -39,10 +39,12 @@
             }
             @page {
                 margin:0;
+                width:100%;
+                height:100%;
                 
             }
             body {
-                margin: 1.6cm;
+                
             }       
         }
     </style>
@@ -130,10 +132,10 @@
                 <div class="form-group">
                     <label for="format" class="col-sm-2 control-label">Format der Stimmzettel</label>
                     <div class="col-sm-2">
-                        <select id='format' name="format">
-                            <option value="A4"selected>Din A4</option>
-                            <option value="A5" >Din A5</option>
-                            <option value="A6">Din A6</option>
+                        <select id='format' name="format" onChange="update_button_clicked()">
+                            <option value="A4">Din A4</option>
+                            <option value="A5"selected >Din A5</option>
+                            <!--option value="A6">Din A6</option-->
                         </select> 
                     </div>
 	                  
@@ -167,8 +169,8 @@
             </div>   
         </div>
         </form>
-        <div id="stimmzettel-paper" class='a5'>
-            <div id="stimmzettel" class="stimmzettel">
+        <div id="stimmzettel-paper" class="a5 row">
+            <div id="stimmzettel" class="col-sm-6 stimmzettel">
                 <h1> Stimmzettel <h1>
                 <h2> Wahl <span class="zurzumfsvfsr">zur/zum</span> <span class="fsvfsr">Fachschaftsvertretung/Fachschaftsrat</span> der Fachschaft <span class="fachschaft">YoLO</span> </h2>
                 <p> Du kannst <b>eine</b> Stimme abgeben. </p>

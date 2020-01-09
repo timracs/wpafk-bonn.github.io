@@ -146,11 +146,12 @@ function add_kandidatur(number=kandidaturcounter)
     $(clone).find('input').each(function(){this.setAttribute('name',this.getAttribute('name') + number)})
     kandidaturcounter++
     vorlage.parentNode.appendChild(clone);
-    
+    update()
 }
 function delete_kandidatur(element)
 {
     document.getElementById("kandidaturen").removeChild(element.parentNode.parentNode.parentNode)
+    update()
 }
 
 function fill_out_form_base64(base64_string)
@@ -217,18 +218,23 @@ function remove_stimmzettel_copys()
 function make_a4()
 {
     remove_stimmzettel_copys()
-    document.getElementById('stimmzettel-paper').setAttribute('class','a4F') 
+    document.getElementById('stimmzettel-paper').setAttribute('class','a4') 
+    document.getElementById('stimmzettel').setAttribute('class','stimmzettel')
 }
 
 function make_a5()
 {   
     remove_stimmzettel_copys()
     
-    document.getElementById('stimmzettel-paper').setAttribute('class','a5')
+    document.getElementById('stimmzettel-paper').setAttribute('class','a5 row')
+    document.getElementById('stimmzettel').setAttribute('class','col-sm-6 stimmzettel')
     
     var vorlage = document.getElementById("stimmzettel")
     var clone = vorlage.cloneNode(true);
     clone.id += '1'
+    
+    clone.className += " right";
+    
     vorlage.parentNode.appendChild(clone);
 }
 
