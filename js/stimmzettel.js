@@ -196,6 +196,10 @@ function update_format()
     {
         make_a4()
     }
+    else if ($( "#format" ).val() == 'A6')
+    {
+        make_a6()
+    }
     else
     {
         console.log ($('#format').val())
@@ -213,6 +217,7 @@ function remove_stimmzettel_copys()
             }
         }
     )
+    $("#stimmzettel-row1").each(function(){this.remove()})
 }
 
 function make_a4()
@@ -226,7 +231,7 @@ function make_a5()
 {   
     remove_stimmzettel_copys()
     
-    document.getElementById('stimmzettel-paper').setAttribute('class','a5 row')
+    document.getElementById('stimmzettel-paper').setAttribute('class','a5')
     document.getElementById('stimmzettel').setAttribute('class','col-sm-6 stimmzettel')
     
     var vorlage = document.getElementById("stimmzettel")
@@ -237,4 +242,30 @@ function make_a5()
     
     vorlage.parentNode.appendChild(clone);
 }
+
+function make_a6(){
+    remove_stimmzettel_copys()
+    document.getElementById('stimmzettel-paper').setAttribute('class','a6')
+    document.getElementById('stimmzettel').setAttribute('class','col-sm-6 stimmzettel')
+    
+    var vorlage = document.getElementById("stimmzettel")
+    var clone = vorlage.cloneNode(true);
+    clone.id += '1'
+    
+    vorlage.parentNode.appendChild(clone);
+    
+    
+    var vorlage2 = document.getElementById("stimmzettel-row")
+    
+    var clone = vorlage2.cloneNode(true);
+    clone.id += '1'
+    
+    //clone.className += " right";
+    
+    vorlage2.parentNode.appendChild(clone);
+    
+}
+
+
+
 

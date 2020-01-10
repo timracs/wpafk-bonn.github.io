@@ -14,8 +14,47 @@
     transform: rotate(90deg);
     transform-origin: top left;
     margin-left:210mm;
-
 }
+
+.a5 .stimmzettel {
+    width:148.5mm;
+}
+
+.a5 h1 {
+    font-size:3em;
+}
+
+.a5 h2 {
+    font-size:2em;
+}
+
+.a5 h3 {
+    font-size:1.5em;
+}
+
+.a6{
+    width:210mm;
+    height:297mm;
+    border-style: dotted;
+    font-size: 0.8em;
+}
+
+.a6 .stimmzettel {
+    height:148.5mm;
+}
+
+.a6 h1 {
+    font-size:3em;
+}
+
+.a6 h2 {
+    font-size:2em;
+}
+
+.a6 h3 {
+    font-size:1.5em;
+}
+
 
 .stimmzettel {
 
