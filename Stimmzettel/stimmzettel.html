@@ -94,11 +94,11 @@
 	            <!-- drucken button-->
                 
                     <div class="col-sm-2">
-                        <button type="button" class="form-control" id="print" name="print"  onclick="window.print();return false;" />Drucken</button>
+                        <button type="button" class="form-control" id="print" name="print"  onclick="window.print();return false;">Drucken</button>
                     </div>
                 <!-- generate link button-->    
                     <div class="col-sm-2">
-                        <button type="button" class="form-control" id="generate_link" name="generate_link"  onclick="copy_link()" />Link</button>
+                        <button type="button" class="form-control" id="generate_link" name="generate_link"  onclick="copy_link()">Link</button>
                          <textarea id="link-copy-area" class="hidden"></textarea>
                     </div>
 	            </div> 
@@ -134,7 +134,7 @@
                     <div class="col-sm-2">
                         <select id='format' name="format" onChange="update_button_clicked()">
                             <option value="A4">Din A4</option>
-                            <option value="A5"selected >Din A5</option>
+                            <option value="A5" selected>Din A5</option>
                             <option value="A6">Din A6</option>
                         </select> 
                     </div>
@@ -149,7 +149,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-4">
-                        <button type="button" class="form-control" id="update" name="update" onclick="add_kandidatur()">Kanditatur hinzufügen</button>
+                        <button type="button" class="form-control" id="btn_add_kandidatur" name="btn_add_kandidatur" onclick="add_kandidatur()">Kandidatur hinzufügen</button>
                     </div>
                 </div>
                 <div id="kandidaturen">
@@ -172,10 +172,10 @@
         <div id="stimmzettel-paper" class="a5">
             <div id="stimmzettel-row" class="row">
                 <div id="stimmzettel" class="col-sm-6 stimmzettel">
-                    <h1> Stimmzettel <h1>
+                    <h1> Stimmzettel </h1>
                     <h2> Wahl <span class="zurzumfsvfsr">zur/zum</span> <span class="fsvfsr">Fachschaftsvertretung/Fachschaftsrat</span> der Fachschaft <span class="fachschaft">YoLO</span> </h2>
                     <p> Du kannst <b>eine</b> Stimme abgeben. </p>
-                    <p> Es sind <b><span class="zahl_sitze">11</span> Mitglieder</b> in <span class="diedenfsvfsr">den/die</span> <span class="fsvfsr">Fachschaftsvertretung/Fachschaftsrat</span>  zu wählen.
+                    <p> Es sind <b><span class="zahl_sitze">11</span> Mitglieder</b> in <span class="diedenfsvfsr">den/die</span> <span class="fsvfsr">Fachschaftsvertretung/Fachschaftsrat</span>  zu wählen.</p>
                     <div id="stimmzettel_kandidaturen">
                         <h3> Kandidierende: </h3>
                         <div id="stimmzettel_kandidatur_hiddenexample" class="row" style="display:none">
