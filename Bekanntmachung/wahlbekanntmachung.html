@@ -91,11 +91,11 @@
 	            <!-- drucken button-->
                 
                     <div class="col-sm-2">
-                        <button type="button" class="form-control" id="print" name="print"  onclick="window.print();return false;" />Drucken</button>
+                        <button type="button" class="form-control" id="print" name="print"  onclick="window.print();return false;">Drucken</button>
                     </div>
                 <!-- generate link button-->    
                     <div class="col-sm-2">
-                        <button type="button" class="form-control" id="generate_link" name="generate_link" title="hier soll ein link stehen" onclick="copy_link()" />Kopiere Link</button>
+                        <button type="button" class="form-control" id="generate_link" name="generate_link" title="hier soll ein link stehen" onclick="copy_link()">Kopiere Link</button>
                         <textarea id="link-copy-area" class="hidden"></textarea>
                     </div>
 	            </div> 
@@ -242,7 +242,7 @@
                 <div class="form-group">
                     <!--label for="" class="col-sm-2 control-label">Wahl einer FSV ist in der Fachschaftssatzung vorgeschrieben</label-->
                     <div class="col-sm-4">
-                        <button type="button" class="form-control" id="update" name="update" onclick="add_urnenstandort()">Urnenstandort hinzufügen</button>
+                        <button type="button" class="form-control" id="btn_add_urnenstandort" name="btn_add_urnenstandort" onclick="add_urnenstandort()">Urnenstandort hinzufügen</button>
                     </div>
                 </div>
                 <div id="urnenstandorte">
@@ -251,7 +251,7 @@
                         <div class="form-group">
                             <!--label for="" class="col-sm-2 control-label">Wahl einer FSV ist in der Fachschaftssatzung vorgeschrieben</label-->
                             <div class="col-sm-4">
-                                <button type="button" class="form-control" id="update" onclick="delete_urnenstandort(this)">diesen Urnenstandort entfernen</button>
+                                <button type="button" class="form-control" id="btn_delete_urnenstandort" onclick="delete_urnenstandort(this)">diesen Urnenstandort entfernen</button>
                             </div>
                         </div>
                         <div class="form-group">
@@ -290,7 +290,7 @@
         </form>
         
         <br/>
-        
+      	<div id="wahlbekanntmachung">
       	<h1>Wahlbekanntmachung</h1>
 	    
 	    <h2>Wahl <span class="derdesfsvfsr">der/des</span> <span class="fsvfsr">Fachschaftsvertretung/Fachschaftsrat</span> der Fachschaft <span class="fachschaft">YOLO</span></h2>
@@ -336,7 +336,7 @@
 	    
 	    <h3>Wählendenverzeichnis</h3>
 
-	    <p>Wahlberechtigt und wählbar sind die Mitglieder der Fachschaft <span class="fachschaft">YOLO</span></h2>, die am <b><span class="frist_wahlberechtigung"></span></b> an der Rheinischen Friedrich-Wilhelms-Universität Bonn eingeschrieben sind. Maßgeblich für die Wahlberechtigung ist darüber hinaus das bei der Immatrikulation oder der Rückmeldung für die Wahlberechtigung angegebene Fach. Zweithörer und Gasthörer sind nicht wahlberechtigt.</p>
+	    <p>Wahlberechtigt und wählbar sind die Mitglieder der Fachschaft <span class="fachschaft">YOLO</span>, die am <b><span class="frist_wahlberechtigung"></span></b> an der Rheinischen Friedrich-Wilhelms-Universität Bonn eingeschrieben sind. Maßgeblich für die Wahlberechtigung ist darüber hinaus das bei der Immatrikulation oder der Rückmeldung für die Wahlberechtigung angegebene Fach. Zweithörer und Gasthörer sind nicht wahlberechtigt.</p>
 
 	    <p>Wählen kann nur, wer im Wählendenverzeichnis eingetragen ist.</p>
 
@@ -361,14 +361,14 @@
         
         <h3> Wahlleitung </h3>
         <p>Die Wahl wird geleitet von <b><span class="wahlleitung">Wahlleitung</span></b>.</p>
-        <p>Kontakt: <span class="wahlleitungkontakt">email@beipiel.de</p>
-        </br>
-        </br>
-        </br>
+        <p>Kontakt: <span class="wahlleitungkontakt">email@beispiel.de</span></p>
+        <br>
+        <br>
+        <br>
         <p>__________________________________________</p>
         <p>Unterschrift <b><span class="wahlleitung">Wahlleitung</span></b> (Wahlleitung)</p>
+        </div>
       </div>
-  </div>
 </body>
 <script type="text/javascript">
       $(function() {
