@@ -89,6 +89,12 @@ function update_fsvfsr(gremium)
     
 }
 
+function shuffle_children(parent){
+    for (var i = parent.children.length; i >= 0; i--) {
+        parent.appendChild(parent.children[Math.random() * i | 0]);
+    }
+}
+
 function update_kandidaturen()
 {   
     //lösche alle vorher hinzugefügten
@@ -101,11 +107,7 @@ function update_kandidaturen()
     
     $( kandidaturen ).find(".kandidatur").not( "#kandidatur_hiddenexample" ).each(function(){data.push(get_kandidatur(this))})
     
-    if (data.length < document.getElementById('zahl_sitze').value)
-    {
-        //freifeld hinzufügen
-        data.push("__________________________")
-    }
+    
     
     for( i = 0 ; i<  data.length;i++)
     {
@@ -117,6 +119,21 @@ function update_kandidaturen()
         $( clone ).find(".name1" ).text(data[i])
         
 
+        document.getElementById("stimmzettel_kandidaturen").appendChild(clone)
+    }
+    if ($( "#shuffle_kandidaturen" ).is(":checked"))
+    
+    {
+        shuffle_children(document.getElementById("stimmzettel_kandidaturen"))
+    }
+    if (data.length < document.getElementById('zahl_sitze').value)
+    {
+       var vorlage = document.getElementById("stimmzettel_kandidatur_hiddenexample")
+        var clone = vorlage.cloneNode(true)
+        clone.id = ""
+        clone.style=""
+        clone.setAttribute("class","kandidatur_script_added")
+        $( clone ).find(".name1" ).text("________________________")
         document.getElementById("stimmzettel_kandidaturen").appendChild(clone)
     }
 }

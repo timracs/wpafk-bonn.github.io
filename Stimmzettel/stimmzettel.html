@@ -108,7 +108,7 @@
                 <div class="form-group">
                     <label for="fsname" class="col-sm-2 control-label">wählende Fachschaft:</label>
                     <div class="col-sm-2">
-                        <input type="text" class="form-control" id="fsname" name="fsname" value="YOLO">
+                        <input type="text" class="form-control" id="fsname" name="fsname" value="YOLO" onchange="update_button_clicked()">
                     </div>
                 </div>
                 
@@ -116,7 +116,7 @@
                 <div class="form-group">
                     <label for="anzwahlberechtigte" class="col-sm-2 control-label">Anzahl der Wahlberechtigten:</label>
                     <div class="col-sm-2">
-                        <input type="number" class="form-control" id="anzwahlberechtigte" name="anzwahlberechtigte" value="750">
+                        <input type="number" class="form-control" id="anzwahlberechtigte" name="anzwahlberechtigte" value="750" onchange="update_button_clicked()">
                     </div>
                 </div>
                 
@@ -124,7 +124,7 @@
                 <div class="form-group">
                     <label for="fsvsatzung" class="col-sm-2 control-label">Wahl einer FSV ist in der Fachschaftssatzung vorgeschrieben</label>
                     <div class="col-sm-2">
-                        <input type="checkbox" class="form-control" id="fsvsatzung" name="fsvsatzung">
+                        <input type="checkbox" class="form-control" id="fsvsatzung" name="fsvsatzung" onchange="update_button_clicked()">
                     </div>
 	                  
                 </div>  
@@ -148,6 +148,13 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label for="shuffle_kandidaturen" class="col-sm-2 control-label">Reihenfolge der Kandidaturen auf dem Stimmzettel zufällig wählen</label>
+                    <div class="col-sm-2">
+                        <input type="checkbox" class="form-control" id="shuffle_kandidaturen" name="shuffle_kandidaturen" onchange="update_button_clicked()" checked>
+                    </div>
+	                  
+                </div>  
+                <div class="form-group">
                     <div class="col-sm-4">
                         <button type="button" class="form-control" id="btn_add_kandidatur" name="btn_add_kandidatur" onclick="add_kandidatur()">Kandidatur hinzufügen</button>
                     </div>
@@ -157,7 +164,7 @@
                          <div class="form-group">
                             <label class="col-sm-1 control-label">Name:</label>
                             <div class="col-sm-4">
-                                <input type="text" name="kandidatur_name" class="form-control kandidatur_name" value="Max Maria Musterperson">
+                                <input type="text" name="kandidatur_name" class="form-control kandidatur_name" value="Max Maria Musterperson" onchange="update_button_clicked()">
                             </div> 
                             <div class="col-sm-3">
                                 <button type="button" class="form-control" onclick="delete_kandidatur(this)">diese Kandidatur entfernen</button>
@@ -176,16 +183,18 @@
                     <h2> Wahl <span class="zurzumfsvfsr">zur/zum</span> <span class="fsvfsr">Fachschaftsvertretung/Fachschaftsrat</span> der Fachschaft <span class="fachschaft">YoLO</span> </h2>
                     <p> Du kannst <b>eine</b> Stimme abgeben. </p>
                     <p> Es sind <b><span class="zahl_sitze">11</span> Mitglieder</b> in <span class="diedenfsvfsr">den/die</span> <span class="fsvfsr">Fachschaftsvertretung/Fachschaftsrat</span>  zu wählen.</p>
-                    <div id="stimmzettel_kandidaturen">
+                    <div>
                         <h3> Kandidierende: </h3>
-                        <div id="stimmzettel_kandidatur_hiddenexample" class="row" style="display:none">
-                            <div class="col-sm-7">
-                                <p> &#9711; <span class="name1">Maxi Muster</span> </p>
-                            </div>
-                            
-                        </div>    
+                        <div id="stimmzettel_kandidaturen">
+                            <div id="stimmzettel_kandidatur_hiddenexample" class="row" style="display:none">
+                                <div class="col-sm-7">
+                                    <p> &#9711; <span class="name1">Maxi Muster</span> </p>
+                                </div>
+                                
+                            </div>    
+                        <div>
                     </div>
-                    <br/>
+                    
                 </div>
             </div> 
         </div>
