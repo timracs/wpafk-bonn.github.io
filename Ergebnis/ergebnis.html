@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html moznomarginboxes mozdissallowselectionprint>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Wahlergebnis</title>
+
+    <script>
+        window.onload = function () {
+            ergebnis_onload()
+            
+            
+        }
+    </script>
+     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="../js/jquery-2.1.4.min.js"></script>
+    <script src="../js/jquery-ui.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/create_link.js"></script>
+    <script src="../js/wahlergebnis.js"></script>
+    <script src="../js/jquery-clockpicker.min.js"></script>
+    <script src="../js/datepicker-de.js"></script>
+    
+    <!-- Bootstrap -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/jquery-ui.min.css" rel="stylesheet">
+    <link href="../css/jquery-clockpicker.min.css" rel="stylesheet">
+    
+    <link href="../css/ergebnis.css" rel="stylesheet">
+    
+    
+    
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+    td.wb {
+	color: #070;
+    }
+    </style>
+</head>
+<body>
+    <div class="container" id="content">
+        <div class="no-print" id="menu">
+            <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" href="../index.html">Wahlfristen</a>
+            </li>
+            <li class="nav-item">
+                <a id="wahlbekanntmachung_link" class="nav-link" href="../Bekanntmachung/wahlbekanntmachung.html">Wahlbekanntmachung</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../Stimmzettel/stimmzettel.html">Stimmzettel</a>
+            </li>
+            <li class="nav-item">
+                <a id="wahlbekanntmachung_link" class="nav-link" href="#">Ergebnis</a>
+            </li>
+            </ul>
+        </div>
+        <!-- Formulardaten -->
+        <form>
+        <div id="wahl_data" class="no-print" >
+            <h2>Daten:</h2>
+            
+            <div class="form-horizontal">
+                
+                <!-- update button-->
+                <div class="form-group">
+                    <!--label for="" class="col-sm-2 control-label">Wahl einer FSV ist in der Fachschaftssatzung vorgeschrieben</label-->
+                    <div class="col-sm-2">
+                        <button type="button" class="form-control" id="update" name="update" onclick="update_button_clicked()">Update</button>
+                    </div>
+	            
+	            <!-- drucken button-->
+                
+                    <div class="col-sm-2">
+                        <button type="button" class="form-control" id="print" name="print"  onclick="window.print();return false;">Drucken</button>
+                    </div>
+                <!-- generate link button-->    
+                    <div class="col-sm-2">
+                        <button type="button" class="form-control" id="generate_link" name="generate_link" title="hier soll ein link stehen" onclick="copy_link()">Kopiere Link</button>
+                        <textarea id="link-copy-area" class="hidden"></textarea>
+                    </div>
+	            </div> 
+	            
+	            <div class="form-group">
+	                <label for="datestart" class="col-sm-2 control-label">Erster Wahltag</label>
+	                <div class="col-sm-2">
+	                <input type="text" class="form-control" name="datestart" id="datestart" value="11.11.2019" onchange="update_button_clicked()">
+	                </div>
+	                <div>
+	                    <p id="wochentag_1"></p> 
+	                </div>
+	            </div>
+	            
+	            <div class="form-group">
+	                <label for="dateend" class="col-sm-2 control-label">Letzter Wahltag</label>
+	                <div class="col-sm-2">
+	                    <input type="text" class="form-control" id="dateend" name="dateend" value="14.11.2019" onchange="update_button_clicked()">
+	                </div>
+	                <div>
+	                    <p id="wochentag_2"></p> 
+	                </div>
+	            </div>
+	            
+	            <!-- Wählende Fachschaft-->
+                <div class="form-group">
+                    <label for="fsname" class="col-sm-2 control-label">wählende Fachschaft:</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" id="fsname" name="fsname" value="YOLO" onchange="update_button_clicked()">
+                    </div>
+                </div>
+                
+                <!-- Anzahl Wahlberechtigte-->
+                <div class="form-group">
+                    <label for="anzwahlberechtigte" class="col-sm-2 control-label">Anzahl der Wahlberechtigten:</label>
+                    <div class="col-sm-2">
+                        <input type="number" class="form-control" id="anzwahlberechtigte" name="anzwahlberechtigte" value="750" onchange="update_button_clicked()">
+                    </div>
+                </div>
+                
+                <!-- FSV in Satzung-->
+                <div class="form-group">
+                    <label for="fsvsatzung" class="col-sm-2 control-label">Wahl einer FSV ist in der Fachschaftssatzung vorgeschrieben</label>
+                    <div class="col-sm-2">
+                        <input type="checkbox" class="form-control" id="fsvsatzung" name="fsvsatzung" onchange="update_button_clicked()">
+                    </div>
+	                  
+                </div>  
+                
+                <!-- Wahlleitung-->
+                <div class="form-group">
+                    <div class="form-group">
+                        <label for="wahlleitung" class="col-sm-2 control-label">Wahlleitung:</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="wahlleitung" name="wahlleitung" value="MisterX" onchange="update_button_clicked()">
+                        </div>
+                        <label for="wahlleitungkontakt" class="col-sm-2 control-label">Kontakt:</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="wahlleitungkontakt" name="wahlleitungkontakt" value="misterX@uni-bonn.de" onchange="update_button_clicked()">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- konstituierende Sitzung-->
+                <div class="form-group">
+                    <label for="konsti_datum" class="col-sm-2 control-label">Konstituierende Sitzung:</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" id="konsti_datum" name="konsti_datum" value="18.11.2019" onchange="update_button_clicked()">
+                    </div>
+                    
+                    <label for="konsti_ort" class="col-sm-2 control-label">Ort:</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" id="konsti_ort" name="konsti_ort" value="in Raum 0.016" onchange="update_button_clicked()">
+                    </div>
+                    
+                    <label for="konsti_zeit" class="col-sm-2 control-label">Uhrzeit: </label>
+                    <div class="col-sm-2 input-group clockpicker" data-autoclose="true">
+                        <input id="konsti_zeit" name="konsti_zeit" type="text" class="form-control" value="18:00" onchange="update_button_clicked()">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-time"></span>
+                         </span>
+                    </div>
+                    
+                </div>
+                
+                <!-- Anzahl Stimmen-->
+                <div class="form-group">
+                    <label for="anzahlstimmen" class="col-sm-2 control-label">Anzahl der abgegebenen Stimmen:</label>
+                    <div class="col-sm-2">
+                        <input type="number" class="form-control" id="anzahlstimmen" name="anzahlstimmen" value="0" onchange="update_button_clicked()">
+                    </div>
+                    <label for="anzahlstimmen_ung" class="col-sm-2 control-label">Anzahl der abgegebenen, ungültigen Stimmen:</label>
+                    <div class="col-sm-2">
+                        <input type="number" class="form-control" id="anzahlstimmen_ung" name="anzahlstimmen_ung" value="0" onchange="update_button_clicked()">
+                    </div>
+                    <label for="anzahlstimmen_g" class="col-sm-2 control-label">Anzahl der abgegebenen, gültigen Stimmen:</label>
+                    <div class="col-sm-2">
+                        <input type="number" class="form-control" id="anzahlstimmen_g" name="anzahlstimmen_g" value="0" onchange="update_button_clicked()">
+                    </div>
+                </div>
+                
+                <h2> Auszählungsergebnis </h2>
+                <div class="form-group">
+                    <!--label for="" class="col-sm-2 control-label">Wahl einer FSV ist in der Fachschaftssatzung vorgeschrieben</label-->
+                    <div class="col-sm-4">
+                        <button type="button" class="form-control" id="btn_add_urnenstandort" name="btn_add_urnenstandort" onclick="add_teilergebnis()">Teilergebnis hinzufügen</button>
+                    </div>
+                </div>
+                <div id="teilergebnis">
+                    <div id="teilergebnis_hiddenexample" class="teilergebnis" style="display:None" >
+                        <h3> Teilergebnis</h3>
+                        <div class="form-group">
+                            <!--label for="" class="col-sm-2 control-label">Wahl einer FSV ist in der Fachschaftssatzung vorgeschrieben</label-->
+                            <div class="col-sm-4">
+                                <button type="button" class="form-control" id="btn_delete_teilergebnis" onclick="delete_teilergebnis(this)">dieses Teilergebnis entfernen</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Name:</label>
+                            <div class="col-sm-2">
+                                <input type="text" name="teilergebnis_name" class="form-control teilergebnis_name" value="Mustermann" onchange="update_button_clicked()">
+                            </div>
+                            <label class="col-sm-2 control-label">Vornamen:</label>
+                            <div class="col-sm-2">
+                                <input type="text" name="teilergebnis_vorname" class="form-control teilergebnis_vorname" value="Marie Charlotte" onchange="update_button_clicked()">
+                            </div>
+                            
+                         </div>   
+                         <div class="form-group">
+                            <label class="col-sm-2 control-label">Anzahl der erhaltenen Stimmen:</label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control teilergebnis_stimmen" name="teilergebnis_stimmen" value="0" onchange="update_button_clicked()">
+                            </div>
+                         </div>      
+                    </div>
+                </div>      
+            </div>   
+        </div>
+        </form>
+        
+      	<div id="wahlbekanntmachung">
+      	<h2 style="text-align:center;"> Wahl <span class="derdesfsvfsr">der/des</span> <span class="fsvfsr">Fachschaftsvertretung/Fachschaftsrat</span> der Fachschaft <span class="fachschaft">YOLO</span> der Rheinischen Friedrich-Wilhelms-Universität Bonn </h2>
+      	<h1 style="text-align:center;"> - Wahlergebnis - </h1>
+      	<h4 style="text-align:center;"> <span class="ortdatum">Neuland, 31. 02. 2020</span></h4>
+      	<br>
+      	<div class="row">
+      	    <div class="col-sm-6">
+              	<p>Das Ergebnis der Wahl <span class="derdesfsvfsr">der/des</span> <span class="fsvfsr">Fachschaftsvertretung/Fachschaftsrat</span> der Fachschaft <span class="fachschaft">YOLO</span> vom <span class="wahlzeitraum">YOLO</span> lautet wie folgt.</p>
+            </div>
+             <div class="col-sm-6">
+              	<p>Das Ergebnis der Wahl <span class="derdesfsvfsr">der/des</span> <span class="fsvfsr">Fachschaftsvertretung/Fachschaftsrat</span> der Fachschaft <span class="fachschaft">YOLO</span> vom <span class="wahlzeitraum">YOLO</span> lautet wie folgt.</p>	
+            </div>
+        </div>
+        <div class="row">
+            <table class="table"> 
+                <tbody>
+                    <tr> <th> Wahlberechtigte </th> <td> <span class="wahlberechtigte">0</span> </td> <th> Abgegebene Stimmen (engl) </th>
+                    <tr> <th> Abgegebene Stimmen </th> <td> <span class="stimmen">0</span> </td> <th> Abgegebene Stimmen (engl) </th>
+                    <tr> <th> Wahlbeteiligung </th> <td> <span class="wahlbeteiligung">0</span>% </td> <th> Abgegebene Stimmen (engl) </th>
+                    <tr> <th> Abgegebene ungültige Stimmen </th> <td> <span class="stimmen_ung">0</span> </td> <th> Abgegebene Stimmen (engl) </th>
+                    <tr> <th> Abgegebene gültige Stimmen </th> <td> <span class="stimmen_g">0</span> </td> <th> Abgegebene Stimmen (engl) </th>
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <table id="ergebnis_table" class="table"> 
+                <thead>
+                    <th scope="col">Postition</th><th scope="col">Name</th><th scope="col">Stimmen</th> <th scope="col">Stimmen in %</th>
+                </thead>
+                <tbody>
+                    <tr id="ergebnis_hiddenexample" style="display:None"><td><span class= teilergebnis_position>0</span><td><span class= teilergebnis_name>Mustermann</span>, <span class= teilergebnis_vorname>Marie Hannelore</span></td><td><span class="teilergebnis_stimmen">0</span> </td><td> <span class="teilergebnis_stimmen_prozent">110</span> %</td></tr>
+
+                </tbody>
+            </table>
+        </div>
+        <div class"row">
+            <div class="col-sm-6">
+                <p> Die hellgrau hinterlegten Personen sind gewählt. </p>
+            </div>
+            <div class="col-sm-6">
+                <p> Die hellgrau hinterlegten Personen sind gewählt. </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>Einspruch gegen das Wahlergebnis</h3>
+                <p>Gegen dieses Wahlergebnis kann innerhalb von 14 Tagen nach Veröffentlichung schriftlich  oder per E-Mail Einspruch beim Wahlprüfungsausschuss der Fachschaftenkonferenz erhoben werden.</p>
+            </div>
+            <div class="col-sm-6">
+                <h3>Einspruch gegen das Wahlergebnis</h3>
+                <p>Gegen dieses Wahlergebnis kann innerhalb von 14 Tagen nach Veröffentlichung schriftlich  oder per E-Mail Einspruch beim Wahlprüfungsausschuss der Fachschaftenkonferenz erhoben werden.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+
+	            <h3>Konstituierende Sitzung</h3>
+
+	            <p>Die konstituierende Sitzung <span class="derdesfsvfsr">der</span> neu gewählten <span class="fsvfsr">Fachschaftsvertretung/Fachschaftsrat</span> findet am <span class="datum_uhrzeit_konstituierende_sitzung">8. Dezember 2015 ab 12 Uhr</span> <span class="ort_konstituierende_sitzung">im Fachschaftsraum über der Diathek</span> statt.</p>
+   
+                <h3> Wahlleitung </h3>
+                <p>Die Wahl wurde geleitet von <b><span class="wahlleitung">Wahlleitung</span></b>.</p>
+                <p>Kontakt: <span class="wahlleitungkontakt">email@beispiel.de</span></p>
+                <br>
+                <br>
+                <br>
+                <p>__________________________________________</p>
+                <p>Unterschrift <b><span class="wahlleitung">Wahlleitung</span></b> (Wahlleitung)</p>
+            </div>
+            <div class="col-sm-6">
+
+	            <h3>Konstituierende Sitzung</h3>
+
+	            <p>Die konstituierende Sitzung <span class="derdesfsvfsr">der</span> neu gewählten <span class="fsvfsr">Fachschaftsvertretung/Fachschaftsrat</span> findet am <span class="datum_uhrzeit_konstituierende_sitzung">8. Dezember 2015 ab 12 Uhr</span> <span class="ort_konstituierende_sitzung">im Fachschaftsraum über der Diathek</span> statt.</p>
+         
+                <h3> Wahlleitung </h3>
+                <p>Die Wahl wurde geleitet von <b><span class="wahlleitung">Wahlleitung</span></b>.</p>
+                <p>Kontakt: <span class="wahlleitungkontakt">email@beispiel.de</span></p>
+
+            </div>
+        </div>
+        
+     </div>
+</body>
+<script type="text/javascript">
+      $(function() {
+        $.datepicker.setDefaults( $.datepicker.regional[ "de" ] );
+        $( "#datestart" ).datepicker({beforeShowDay: $.datepicker.noWeekends, dateFormat: "dd.mm.yy", firstDay: 1, onSelect: function(){update();}});
+        $( "#dateend" ).datepicker({beforeShowDay: $.datepicker.noWeekends, dateFormat: "dd.mm.yy", firstDay: 1, onSelect: function(){update();}});
+        $( "#konsti_datum" ).datepicker({dateFormat: "dd.mm.yy", firstDay: 1, onSelect: function(){update();}});
+        
+      });
+    </script>
+    
+    <script type="text/javascript">
+        $('.clockpicker').clockpicker();
+    </script>
+</html>
