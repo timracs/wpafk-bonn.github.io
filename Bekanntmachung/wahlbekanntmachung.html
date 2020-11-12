@@ -29,22 +29,9 @@
     <link href="../css/jquery-ui.min.css" rel="stylesheet">
     <link href="../css/jquery-clockpicker.min.css" rel="stylesheet">
     
-    <style>
-        @media print
-        {    
-            .no-print, .no-print *
-            {
-                display: none !important;
-            }
-            @page {
-                margin:0;
-                
-            }
-            body {
-                margin: 1.6cm;
-            }   
-        }
-    </style>
+    <link href="../css/bekanntmachung.css" rel="stylesheet">
+    
+    
     
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -291,84 +278,180 @@
         
         <br/>
       	<div id="wahlbekanntmachung">
-      	<h1>Wahlbekanntmachung</h1>
-	    
-	    <h2>Wahl <span class="derdesfsvfsr">der/des</span> <span class="fsvfsr">Fachschaftsvertretung/Fachschaftsrat</span> der Fachschaft <span class="fachschaft">YOLO</span></h2>
-	    
-	    <p>Gewählt wird <span class="diederfsvfsr">der/die</span> <b><span class="fsvfsr">Fachschaftsvertretung/Fachschaftsrat</span> der Fachschaft <span class="fachschaft">Kunstgeschichte</span></b> der Rheinischen Friedrich-Wilhelms-Universität Bonn.</p>
-	    
-	    <p>Es sind <b><span class="zahl_sitze">11</span> Mitglieder</b> in <span class="diedenfsvfsr">der</span> <span class="fsvfsr">Fachschaftsvertretung/Fachschaftsrat</span> zu wählen.</p>
-	    
-	    <p>Die Wahl findet im Zeitraum <span class="wahlzeitraum">YOLO</span> statt.</p>
-	    
-	    <h3>Ort und Zeit der Stimmabgabe</h3>
+      	<div class="row">
+      	    <div class="col-sm-6">
+              	<h1>Wahlbekanntmachung</h1>
+	            
+	            <h2>Wahl <span class="derdesfsvfsr">der/des</span> <span class="fsvfsr">Fachschaftsvertretung/Fachschaftsrat</span> der Fachschaft <span class="fachschaft">YOLO</span></h2>
+	            
+	            <p>Gewählt wird <span class="diederfsvfsr">der/die</span> <b><span class="fsvfsr">Fachschaftsvertretung/Fachschaftsrat</span> der Fachschaft <span class="fachschaft">Kunstgeschichte</span></b> der Rheinischen Friedrich-Wilhelms-Universität Bonn.</p>
+	            
+	            <p>Es sind <b><span class="zahl_sitze">11</span> Mitglieder</b> in <span class="diedenfsvfsr">der</span> <span class="fsvfsr">Fachschaftsvertretung/Fachschaftsrat</span> zu wählen.</p>
+	            
+	            <p>Die Wahl findet im Zeitraum <span class="wahlzeitraum">YOLO</span> statt.</p>
+	            
+	            <h3>Ort und Zeit der Stimmabgabe</h3>
 
-	    <p>Das Wahllokal ist zu folgenden Zeiten an folgenden Orten geöffnet:</p>
+	            <p>Das Wahllokal ist zu folgenden Zeiten an folgenden Orten geöffnet:</p>
+            </div>
+             <div class="col-sm-6">
+              	<h1>Wahlbekanntmachung</h1>
+	            
+	            <h2>Wahl <span class="derdesfsvfsr">der/des</span> <span class="fsvfsr">Fachschaftsvertretung/Fachschaftsrat</span> der Fachschaft <span class="fachschaft">YOLO</span></h2>
+	            
+	            <p>Gewählt wird <span class="diederfsvfsr">der/die</span> <b><span class="fsvfsr">Fachschaftsvertretung/Fachschaftsrat</span> der Fachschaft <span class="fachschaft">Kunstgeschichte</span></b> der Rheinischen Friedrich-Wilhelms-Universität Bonn.</p>
+	            
+	            <p>Es sind <b><span class="zahl_sitze">11</span> Mitglieder</b> in <span class="diedenfsvfsr">der</span> <span class="fsvfsr">Fachschaftsvertretung/Fachschaftsrat</span> zu wählen.</p>
+	            
+	            <p>Die Wahl findet im Zeitraum <span class="wahlzeitraum">YOLO</span> statt.</p>
+	            
+	            <h3>Ort und Zeit der Stimmabgabe</h3>
 
-	    <table id="urnenstandorte_table" class="table table-striped table-hover">
-	    <tr><th>Datum</th><th>Uhrzeit</th><th>Ort</th></tr>
-	    <tr id="urnen_standort_table_hiddenexample" style="display:None"><td><span class= urnenstandort_datum>Montag, 30. November 2015</span></td><td><span class="urnenstandort_beginn">10:00</span> - <span class="urnenstandort_ende">16:00</span> Uhr</td><td><span class="urnenstandort_ort">Foyer des Kunsthistorischen Instituts</span></td></tr>
-
-	    </table>
-
-	    <h3>Kandiaturen</h3>
-
-	    <p><b>Musterformulare für Kandiaturen sind bei der Wahlleitung erhältlich.<br> Ihre Verwendung wird empfohlen.</b></p>
-
-	    <p>Kandiaturen sind bis zum <b><span class="frist_einreichung_wahlvorschlaege">ein Datum</span></b> um <b><span class="frist_einreichung_wahlvorschlaege_uhrzeit">X UHR</span></b>  bei der <b>Wahlleitung</b> einzureichen. </p>
-
-	    <p>Eine Kandidatur muss mindestens enthalten: Familienname(n), Vorname(n), ladungsfähige Anschrift, E-Mail-Adresse, Matrikelnummer und Unterschrift der kandidierenden Person, sowie Bezeichnung der Wahl, für die die Kandidatur gelten soll</p>
-
-	    <p>(Die Anforderungen an einen Wahlvorschlag ergeben sich aus § 14 FSWO (Siehe http://sp.uni-bonn.de/dokumente/idx/Ordnungen/FSWO.html#§14)</p>
-
-
-	    <h3>Wahlsystem</h3>
-
-        <p> Eine Fachschaft bildet einen Wahlkreis. Jede wahlberechtigte Person hat eine Stimme, die sie für eine kandidierende Person abgibt.</p>
-
-        <p> Gewählt sind die Personen mit den meisten Stimmen, die mindestens 1 Stimme erhalten haben.</p>
-
-        <p> Bei Stimmgleichheit entscheidet die Wahlleitung durch Los über die Reihenfolge.</p>
-
-        <p> Scheidet ein gewähltes Mitglied aus, so wird der Sitz derjenigen kandidierenden Person zugeteilt, die nach dem Wahlergebnis unter den bisher nicht berücksichtigten Personen die meisten Stimmen, jedoch mindestens eine Stimme, hat. Ist die Liste dieser Personen erschöpft, so bleibt der Sitz unbesetzt.</p>
-
-        <p> Ist zu einem Zeitpunkt mindestens die Hälfte der Sitze des Organs unbesetzt, finden innerhalb der nach dieser Wahlordnung kürzestmöglichen Zeit Neuwahlen statt. Der oder die FSR-Vorsitzende beruft dann unverzüglich eine FSVV ein, auf der der Wahltermin festgelegt und ein Wahlausschuss gewählt wird.
-	    
-	    <h3>Wählendenverzeichnis</h3>
-
-	    <p>Wahlberechtigt und wählbar sind die Mitglieder der Fachschaft <span class="fachschaft">YOLO</span>, die am <b><span class="frist_wahlberechtigung"></span></b> an der Rheinischen Friedrich-Wilhelms-Universität Bonn eingeschrieben sind. Maßgeblich für die Wahlberechtigung ist darüber hinaus das bei der Immatrikulation oder der Rückmeldung für die Wahlberechtigung angegebene Fach. Zweithörer und Gasthörer sind nicht wahlberechtigt.</p>
-
-	    <p>Wählen kann nur, wer im Wählendenverzeichnis eingetragen ist.</p>
-
-	    <p>Das Wählendenverzeichnis liegt in der Zeit vom <b><span class="start_auslage_waehlerverzeichnis">11.11.2019</span></b> bis zum <b><span class="ende_auslage_waehlerverzeichnis"><b>18. November 2015</b></span></b> im <b><span class="ort_auslage_waehlerverzeichnis">Büro</span></b> <span class="zeit_auslegung_waehlerverzeichnis">während der allgemeinen Öffnungszeiten</span> zur Einsicht aus. </p>
-
-	    <p>Einsprüche gegen die Richtigkeit des Wählendenverzeichnisses können bei der Wahlleitung innerhalb der Auslegungsfrist, jedoch spätestens bis \textbf{Mittwoch, den 18. November 2015, 18:00 Uhr} eingelegt werden. </p>
-
-	    <h3>Briefwahl</h3>
-
-	    <p>Es ist in begründeten Ausnahmefällen möglich, Briefwahl zu beantragen. Der Briefwahlantrag ist schriftlich einzureichen und zu begründen. Er muss Name, Anschrift und Matrikelnummer des Antragsstellers enthalten.</p>
-
-	    <p>Anträge auf Briefwahl müssen bis spätestens <b><span class="frist_briefwahlantraege">Datum, Uhrzeit</span></b> Uhr bei der Wahlleitung eingegangen sein. Jeder Briefwähler hat die Briefwahlunterlagen bis spätestens 24 Stunden vor der Wahl bei der Wahlleitung abzuholen. Briefwähler, die außerdem nicht in der Lage sind, ihre Briefwahlunterlagen persönlich bei der Wahlleitung abzuholen, können die Briefwahlunterlagen zusammen mit dem Antrag auf Briefwahl schriftlich anfordern.</p>
-
-	    <h3>Auszählung</h3>
-
-	    <p>Die öffentliche Auszählung der Wahl findet am <span class="datum_auszaehlung">2. Dezember 2015</span> um <span class="uhrzeit_auszaehlung">16:00</span> Uhr <span class="ort_auszaehlung">im Fachschaftsraum über der Diathek</span> statt.</p>
-
-
-	    <h3>Konstituierende Sitzung</h3>
-
-	    <p>Die konstituierende Sitzung <span class="derdesfsvfsr">der</span> neu gewählten <span class="fsvfsr">Fachschaftsvertretung/Fachschaftsrat</span> findet am <span class="datum_uhrzeit_konstituierende_sitzung">8. Dezember 2015 ab 12 Uhr</span> <span class="ort_konstituierende_sitzung">im Fachschaftsraum über der Diathek</span> statt.</p>
-        
-        <h3> Wahlleitung </h3>
-        <p>Die Wahl wird geleitet von <b><span class="wahlleitung">Wahlleitung</span></b>.</p>
-        <p>Kontakt: <span class="wahlleitungkontakt">email@beispiel.de</span></p>
-        <br>
-        <br>
-        <br>
-        <p>__________________________________________</p>
-        <p>Unterschrift <b><span class="wahlleitung">Wahlleitung</span></b> (Wahlleitung)</p>
+	            <p>Das Wahllokal ist zu folgenden Zeiten an folgenden Orten geöffnet:</p>
+            </div>
         </div>
-      </div>
+        <div class="row">
+	        <table id="urnenstandorte_table" class="table table-striped table-hover">
+	        <tr><th>Datum</th><th>Uhrzeit</th><th>Ort</th></tr>
+	        <tr id="urnen_standort_table_hiddenexample" style="display:None"><td><span class= urnenstandort_datum>Montag, 30. November 2015</span></td><td><span class="urnenstandort_beginn">10:00</span> - <span class="urnenstandort_ende">16:00</span> Uhr</td><td><span class="urnenstandort_ort">Foyer des Kunsthistorischen Instituts</span></td></tr>
+
+	        </table>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+	            <h3>Kandiaturen</h3>
+
+	            <p><b>Musterformulare für Kandiaturen sind bei der Wahlleitung erhältlich.<br> Ihre Verwendung wird empfohlen.</b></p>
+
+	            <p>Kandiaturen sind bis zum <b><span class="frist_einreichung_wahlvorschlaege">ein Datum</span></b> um <b><span class="frist_einreichung_wahlvorschlaege_uhrzeit">X UHR</span></b>  bei der <b>Wahlleitung</b> einzureichen. </p>
+
+	            <p>Eine Kandidatur muss mindestens enthalten: Familienname(n), Vorname(n), ladungsfähige Anschrift, E-Mail-Adresse, Matrikelnummer und Unterschrift der kandidierenden Person, sowie Bezeichnung der Wahl, für die die Kandidatur gelten soll</p>
+
+	            <p>(Die Anforderungen an einen Wahlvorschlag ergeben sich aus § 14 FSWO (Siehe http://sp.uni-bonn.de/dokumente/idx/Ordnungen/FSWO.html#§14)</p>
+            </div>
+            <div class="col-sm-6">
+	            <h3>Kandiaturen</h3>
+
+	            <p><b>Musterformulare für Kandiaturen sind bei der Wahlleitung erhältlich.<br> Ihre Verwendung wird empfohlen.</b></p>
+
+	            <p>Kandiaturen sind bis zum <b><span class="frist_einreichung_wahlvorschlaege">ein Datum</span></b> um <b><span class="frist_einreichung_wahlvorschlaege_uhrzeit">X UHR</span></b>  bei der <b>Wahlleitung</b> einzureichen. </p>
+
+	            <p>Eine Kandidatur muss mindestens enthalten: Familienname(n), Vorname(n), ladungsfähige Anschrift, E-Mail-Adresse, Matrikelnummer und Unterschrift der kandidierenden Person, sowie Bezeichnung der Wahl, für die die Kandidatur gelten soll</p>
+
+	            <p>(Die Anforderungen an einen Wahlvorschlag ergeben sich aus § 14 FSWO (Siehe http://sp.uni-bonn.de/dokumente/idx/Ordnungen/FSWO.html#§14)</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+	            <h3>Wahlsystem</h3>
+
+                <p> Eine Fachschaft bildet einen Wahlkreis. Jede wahlberechtigte Person hat eine Stimme, die sie für eine kandidierende Person abgibt.</p>
+
+                <p> Gewählt sind die Personen mit den meisten Stimmen, die mindestens 1 Stimme erhalten haben.</p>
+
+                <p> Bei Stimmgleichheit entscheidet die Wahlleitung durch Los über die Reihenfolge.</p>
+
+                <p> Scheidet ein gewähltes Mitglied aus, so wird der Sitz derjenigen kandidierenden Person zugeteilt, die nach dem Wahlergebnis unter den bisher nicht berücksichtigten Personen die meisten Stimmen, jedoch mindestens eine Stimme, hat. Ist die Liste dieser Personen erschöpft, so bleibt der Sitz unbesetzt.</p>
+
+                <p> Ist zu einem Zeitpunkt mindestens die Hälfte der Sitze des Organs unbesetzt, finden innerhalb der nach dieser Wahlordnung kürzestmöglichen Zeit Neuwahlen statt. Der oder die FSR-Vorsitzende beruft dann unverzüglich eine FSVV ein, auf der der Wahltermin festgelegt und ein Wahlausschuss gewählt wird.
+            </div>
+            <div class="col-sm-6">
+	            <h3>Wahlsystem</h3>
+
+                <p> Eine Fachschaft bildet einen Wahlkreis. Jede wahlberechtigte Person hat eine Stimme, die sie für eine kandidierende Person abgibt.</p>
+
+                <p> Gewählt sind die Personen mit den meisten Stimmen, die mindestens 1 Stimme erhalten haben.</p>
+
+                <p> Bei Stimmgleichheit entscheidet die Wahlleitung durch Los über die Reihenfolge.</p>
+
+                <p> Scheidet ein gewähltes Mitglied aus, so wird der Sitz derjenigen kandidierenden Person zugeteilt, die nach dem Wahlergebnis unter den bisher nicht berücksichtigten Personen die meisten Stimmen, jedoch mindestens eine Stimme, hat. Ist die Liste dieser Personen erschöpft, so bleibt der Sitz unbesetzt.</p>
+
+                <p> Ist zu einem Zeitpunkt mindestens die Hälfte der Sitze des Organs unbesetzt, finden innerhalb der nach dieser Wahlordnung kürzestmöglichen Zeit Neuwahlen statt. Der oder die FSR-Vorsitzende beruft dann unverzüglich eine FSVV ein, auf der der Wahltermin festgelegt und ein Wahlausschuss gewählt wird.
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">	            
+	            <h3>Wählendenverzeichnis</h3>
+
+	            <p>Wahlberechtigt und wählbar sind die Mitglieder der Fachschaft <span class="fachschaft">YOLO</span>, die am <b><span class="frist_wahlberechtigung"></span></b> an der Rheinischen Friedrich-Wilhelms-Universität Bonn eingeschrieben sind. Maßgeblich für die Wahlberechtigung ist darüber hinaus das bei der Immatrikulation oder der Rückmeldung für die Wahlberechtigung angegebene Fach. Zweithörer und Gasthörer sind nicht wahlberechtigt.</p>
+
+	            <p>Wählen kann nur, wer im Wählendenverzeichnis eingetragen ist.</p>
+
+	            <p>Das Wählendenverzeichnis liegt in der Zeit vom <b><span class="start_auslage_waehlerverzeichnis">11.11.2019</span></b> bis zum <b><span class="ende_auslage_waehlerverzeichnis"><b>18. November 2015</b></span></b> im <b><span class="ort_auslage_waehlerverzeichnis">Büro</span></b> <span class="zeit_auslegung_waehlerverzeichnis">während der allgemeinen Öffnungszeiten</span> zur Einsicht aus. </p>
+
+	            <p>Einsprüche gegen die Richtigkeit des Wählendenverzeichnisses können bei der Wahlleitung innerhalb der Auslegungsfrist, jedoch spätestens bis <b><span class="frist_einreichung_wahlvorschlaege">ein Datum</span></b> um <b><span class="frist_einreichung_wahlvorschlaege_uhrzeit">X UHR</span></b> eingelegt werden. </p>
+            </div>
+            <div class="col-sm-6">	            
+	            <h3>Wählendenverzeichnis</h3>
+
+	            <p>Wahlberechtigt und wählbar sind die Mitglieder der Fachschaft <span class="fachschaft">YOLO</span>, die am <b><span class="frist_wahlberechtigung"></span></b> an der Rheinischen Friedrich-Wilhelms-Universität Bonn eingeschrieben sind. Maßgeblich für die Wahlberechtigung ist darüber hinaus das bei der Immatrikulation oder der Rückmeldung für die Wahlberechtigung angegebene Fach. Zweithörer und Gasthörer sind nicht wahlberechtigt.</p>
+
+	            <p>Wählen kann nur, wer im Wählendenverzeichnis eingetragen ist.</p>
+
+	            <p>Das Wählendenverzeichnis liegt in der Zeit vom <b><span class="start_auslage_waehlerverzeichnis">11.11.2019</span></b> bis zum <b><span class="ende_auslage_waehlerverzeichnis"><b>18. November 2015</b></span></b> im <b><span class="ort_auslage_waehlerverzeichnis">Büro</span></b> <span class="zeit_auslegung_waehlerverzeichnis">während der allgemeinen Öffnungszeiten</span> zur Einsicht aus. </p>
+
+	            <p>Einsprüche gegen die Richtigkeit des Wählendenverzeichnisses können bei der Wahlleitung innerhalb der Auslegungsfrist, jedoch spätestens bis <b><span class="frist_einreichung_wahlvorschlaege">ein Datum</span></b> um <b><span class="frist_einreichung_wahlvorschlaege_uhrzeit">X UHR</span></b> eingelegt werden. </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+	            <h3>Briefwahl</h3>
+
+	            <p>Es ist in begründeten Ausnahmefällen möglich, Briefwahl zu beantragen. Der Briefwahlantrag ist schriftlich einzureichen und zu begründen. Er muss Name, Anschrift und Matrikelnummer des Antragsstellers enthalten.</p>
+
+	            <p>Anträge auf Briefwahl müssen bis spätestens <b><span class="frist_briefwahlantraege">Datum, Uhrzeit</span></b> Uhr bei der Wahlleitung eingegangen sein. Jeder Briefwähler hat die Briefwahlunterlagen bis spätestens 24 Stunden vor der Wahl bei der Wahlleitung abzuholen. Briefwähler, die außerdem nicht in der Lage sind, ihre Briefwahlunterlagen persönlich bei der Wahlleitung abzuholen, können die Briefwahlunterlagen zusammen mit dem Antrag auf Briefwahl schriftlich anfordern.</p>
+
+	            <h3>Auszählung</h3>
+
+	            <p>Die öffentliche Auszählung der Wahl findet am <span class="datum_auszaehlung">2. Dezember 2015</span> um <span class="uhrzeit_auszaehlung">16:00</span> Uhr <span class="ort_auszaehlung">im Fachschaftsraum über der Diathek</span> statt.</p>
+
+            </div>
+            <div class="col-sm-6">
+	            <h3>Briefwahl</h3>
+
+	            <p>Es ist in begründeten Ausnahmefällen möglich, Briefwahl zu beantragen. Der Briefwahlantrag ist schriftlich einzureichen und zu begründen. Er muss Name, Anschrift und Matrikelnummer des Antragsstellers enthalten.</p>
+
+	            <p>Anträge auf Briefwahl müssen bis spätestens <b><span class="frist_briefwahlantraege">Datum, Uhrzeit</span></b> Uhr bei der Wahlleitung eingegangen sein. Jeder Briefwähler hat die Briefwahlunterlagen bis spätestens 24 Stunden vor der Wahl bei der Wahlleitung abzuholen. Briefwähler, die außerdem nicht in der Lage sind, ihre Briefwahlunterlagen persönlich bei der Wahlleitung abzuholen, können die Briefwahlunterlagen zusammen mit dem Antrag auf Briefwahl schriftlich anfordern.</p>
+
+	            <h3>Auszählung</h3>
+
+	            <p>Die öffentliche Auszählung der Wahl findet am <span class="datum_auszaehlung">2. Dezember 2015</span> um <span class="uhrzeit_auszaehlung">16:00</span> Uhr <span class="ort_auszaehlung">im Fachschaftsraum über der Diathek</span> statt.</p>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+
+	            <h3>Konstituierende Sitzung</h3>
+
+	            <p>Die konstituierende Sitzung <span class="derdesfsvfsr">der</span> neu gewählten <span class="fsvfsr">Fachschaftsvertretung/Fachschaftsrat</span> findet am <span class="datum_uhrzeit_konstituierende_sitzung">8. Dezember 2015 ab 12 Uhr</span> <span class="ort_konstituierende_sitzung">im Fachschaftsraum über der Diathek</span> statt.</p>
+                
+                <h3> Wahlleitung </h3>
+                <p>Die Wahl wird geleitet von <b><span class="wahlleitung">Wahlleitung</span></b>.</p>
+                <p>Kontakt: <span class="wahlleitungkontakt">email@beispiel.de</span></p>
+                <br>
+                <br>
+                <br>
+                <p>__________________________________________</p>
+                <p>Unterschrift <b><span class="wahlleitung">Wahlleitung</span></b> (Wahlleitung)</p>
+            </div>
+            <div class="col-sm-6">
+
+	            <h3>Konstituierende Sitzung</h3>
+
+	            <p>Die konstituierende Sitzung <span class="derdesfsvfsr">der</span> neu gewählten <span class="fsvfsr">Fachschaftsvertretung/Fachschaftsrat</span> findet am <span class="datum_uhrzeit_konstituierende_sitzung">8. Dezember 2015 ab 12 Uhr</span> <span class="ort_konstituierende_sitzung">im Fachschaftsraum über der Diathek</span> statt.</p>
+                
+                <h3> Wahlleitung </h3>
+                <p>Die Wahl wird geleitet von <b><span class="wahlleitung">Wahlleitung</span></b>.</p>
+                <p>Kontakt: <span class="wahlleitungkontakt">email@beispiel.de</span></p>
+                <br>
+                <br>
+                <br>
+                <p>__________________________________________</p>
+                <p>Unterschrift <b><span class="wahlleitung">Wahlleitung</span></b> (Wahlleitung)</p>
+            </div>
+        </div>
+     </div>
 </body>
 <script type="text/javascript">
       $(function() {
