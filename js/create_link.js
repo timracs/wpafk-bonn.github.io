@@ -16,7 +16,8 @@ function update_link()
 }
 
 function copy_link()
-{
+{   
+    update_link()
     var textfield = document.getElementById("link-copy-area")
     textfield.setAttribute("class","")
     textfield.select()

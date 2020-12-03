@@ -9,8 +9,8 @@
 
     <script>
         window.onload = function () {
-            bekanntmachung_onload()
-            
+            //bekanntmachung_onload()
+            on_pageload()
             
         }
     </script>
@@ -20,7 +20,9 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/create_link.js"></script>
-    <script src="../js/wahlbekanntmachung.js"></script>
+    <script src="../js/fristenrechner.js"></script>
+    <script src="../js/wahlbekanntmachung_fields_data.js"></script>
+    <script src="../js/tools.js"></script>
     <script src="../js/jquery-clockpicker.min.js"></script>
     <script src="../js/datepicker-de.js"></script>
     
@@ -62,18 +64,11 @@
             </ul>
         </div>
         <!-- Formulardaten -->
-        <form>
-        <div id="wahl_data" class="no-print" >
-            <h2>Daten:</h2>
-            
+        <div id="butons">
             <div class="form-horizontal">
                 
                 <!-- update button-->
                 <div class="form-group">
-                    <!--label for="" class="col-sm-2 control-label">Wahl einer FSV ist in der Fachschaftssatzung vorgeschrieben</label-->
-                    <div class="col-sm-2">
-                        <button type="button" class="form-control" id="update" name="update" onclick="update_button_clicked()">Update</button>
-                    </div>
 	            
 	            <!-- drucken button-->
                 
@@ -82,198 +77,21 @@
                     </div>
                 <!-- generate link button-->    
                     <div class="col-sm-2">
-                        <button type="button" class="form-control" id="generate_link" name="generate_link" title="hier soll ein link stehen" onclick="copy_link()">Kopiere Link</button>
-                        <textarea id="link-copy-area" class="hidden"></textarea>
+                        <button type="button" class="form-control" id="generate_link" name="generate_link"  onclick="copy_link()">Link</button>
+                         <textarea id="link-copy-area" class="hidden"></textarea>
                     </div>
 	            </div> 
-	            
-	            <div class="form-group">
-	                <label for="datestart" class="col-sm-2 control-label">Erster Wahltag</label>
-	                <div class="col-sm-2">
-	                <input type="text" class="form-control" name="datestart" id="datestart" value="11.11.2019">
-	                </div>
-	                <div>
-	                    <p id="wochentag_1"></p> 
-	                </div>
-	            </div>
-	            
-	            <div class="form-group">
-	                <label for="dateend" class="col-sm-2 control-label">Letzter Wahltag</label>
-	                <div class="col-sm-2">
-	                    <input type="text" class="form-control" id="dateend" name="dateend" value="14.11.2019">
-	                </div>
-	                <div>
-	                    <p id="wochentag_2"></p> 
-	                </div>
-	            </div>
-	            
-	            <!-- Wählende Fachschaft-->
-                <div class="form-group">
-                    <label for="fsname" class="col-sm-2 control-label">wählende Fachschaft:</label>
-                    <div class="col-sm-2">
-                        <input type="text" class="form-control" id="fsname" name="fsname" value="YOLO">
-                    </div>
-                </div>
-                
-                <!-- Anzahl Wahlberechtigte-->
-                <div class="form-group">
-                    <label for="anzwahlberechtigte" class="col-sm-2 control-label">Anzahl der Wahlberechtigten:</label>
-                    <div class="col-sm-2">
-                        <input type="number" class="form-control" id="anzwahlberechtigte" name="anzwahlberechtigte" value="750">
-                    </div>
-                </div>
-                
-                <!-- FSV in Satzung-->
-                <div class="form-group">
-                    <label for="fsvsatzung" class="col-sm-2 control-label">Wahl einer FSV ist in der Fachschaftssatzung vorgeschrieben</label>
-                    <div class="col-sm-2">
-                        <input type="checkbox" class="form-control" id="fsvsatzung" name="fsvsatzung">
-                    </div>
-	                  
-                </div>  
-                
-                <!-- Wahlleitung-->
-                <div class="form-group">
-                    <div class="form-group">
-                        <label for="wahlleitung" class="col-sm-2 control-label">Wahlleitung:</label>
-                        <div class="col-sm-2">
-                            <input type="text" class="form-control" id="wahlleitung" name="wahlleitung" value="MisterX">
-                        </div>
-                        <label for="wahlleitungkontakt" class="col-sm-2 control-label">Kontakt:</label>
-                        <div class="col-sm-2">
-                            <input type="text" class="form-control" id="wahlleitungkontakt" name="wahlleitungkontakt" value="misterX@uni-bonn.de">
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-	                <label for="wv" class="col-sm-2 control-label">Gemeinsame Frist für die Einreichung von Kandidaturen, Briefwahlanträgen und Einsprüchen gegen das Wählendenverzeichnis</label>
-	                <div class="col-sm-2">
-	                    <input type="text" class="form-control" id="wv" name="wv" value="1.11.2019">
-	                </div>
-	                <label for="wvtime" class="col-sm-2 control-label">Zeit:</label>
-	                <div class="form-group">
-                        <div class="col-sm-2 input-group clockpicker" data-autoclose="true">
-                            <input id="wvtime" name="wvtime" type="text" class="form-control" value="18:00">
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-time"></span>
-                             </span>
-                        </div>
-	                
-	                </div>
-                </div>
-                
-                 <div class="form-group">
-                    <div class="form-group">
-                        <label for="auslage_wv_start" class="col-sm-2 control-label">Auslage des Wählendenverzeichnisses:</label>
-                        <div class="col-sm-2">
-                            <input type="text" class="form-control" id="auslage_wv_start" name="auslage_wv_start" value="29.10.2019">
-                        </div>
-                        <label for="auslage_wv_ende" class="col-sm-2 control-label">bis: </label>
-                        <div class="col-sm-2">
-                            <input type="text" class="form-control" id="auslage_wv_ende" name="auslage_wv_ende" value="1.11.2019">
-                        </div>
-                        <label for="auslage_wv_ort" class="col-sm-2 control-label">Ort:</label>
-                        <div class="col-sm-2">
-                            <input type="text" class="form-control" id="auslage_wv_ort" name="auslage_wv_ort" value="im Fachschaftsbüro">
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <div class="form-group">
-                        <label for="auszaehlung_datum" class="col-sm-2 control-label">Auszählung der Stimmen:</label>
-                        <div class="col-sm-2">
-                            <input type="text" class="form-control" id="auszaehlung_datum" name="auszaehlung_datum" value="13.11.2019">
-                        </div>
-                        
-                        <label for="auszaehlung_ort" class="col-sm-2 control-label">Ort:</label>
-                        <div class="col-sm-2">
-                            <input type="text" class="form-control" id="auszaehlung_ort" name="auszaehlung_ort" value="im Foyer">
-                        </div>
-                        
-                        <label for="auszaehlung_zeit" class="col-sm-2 control-label">Uhrzeit: </label>
-                        <div class="col-sm-2 input-group clockpicker" data-autoclose="true">
-                            <input id="auszaehlung_zeit" name="auszaehlung_zeit" type="text" class="form-control" value="18:00">
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-time"></span>
-                             </span>
-                        </div>
-                        
-                    </div>
-                </div>
-                
-
-                <div class="form-group">
-                    <label for="konsti_datum" class="col-sm-2 control-label">Konstituierende Sitzung:</label>
-                    <div class="col-sm-2">
-                        <input type="text" class="form-control" id="konsti_datum" name="konsti_datum" value="18.11.2019">
-                    </div>
-                    
-                    <label for="konsti_ort" class="col-sm-2 control-label">Ort:</label>
-                    <div class="col-sm-2">
-                        <input type="text" class="form-control" id="konsti_ort" name="konsti_ort" value="in Raum 0.016">
-                    </div>
-                    
-                    <label for="konsti_zeit" class="col-sm-2 control-label">Uhrzeit: </label>
-                    <div class="col-sm-2 input-group clockpicker" data-autoclose="true">
-                        <input id="konsti_zeit" name="konsti_zeit" type="text" class="form-control" value="18:00">
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-time"></span>
-                         </span>
-                    </div>
-                    
-                </div>
-                
-                <h2> Urnenstandorte </h2>
-                <div class="form-group">
-                    <!--label for="" class="col-sm-2 control-label">Wahl einer FSV ist in der Fachschaftssatzung vorgeschrieben</label-->
-                    <div class="col-sm-4">
-                        <button type="button" class="form-control" id="btn_add_urnenstandort" name="btn_add_urnenstandort" onclick="add_urnenstandort()">Urnenstandort hinzufügen</button>
-                    </div>
-                </div>
-                <div id="urnenstandorte">
-                    <div id="urnen_standort_hiddenexample" class="urnenstandort" style="display:None" >
-                        <h3> Urnenstandort</h3>
-                        <div class="form-group">
-                            <!--label for="" class="col-sm-2 control-label">Wahl einer FSV ist in der Fachschaftssatzung vorgeschrieben</label-->
-                            <div class="col-sm-4">
-                                <button type="button" class="form-control" id="btn_delete_urnenstandort" onclick="delete_urnenstandort(this)">diesen Urnenstandort entfernen</button>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Datum:</label>
-                            <div class="col-sm-2">
-                                <input type="text" name="urnenstandort_datum" class="form-control datepicker urnenstandort_datum" value="18.11.2019">
-                            </div>
-                            <label class="col-sm-2 control-label">von: </label>
-                            <div class="col-sm-2 input-group clockpicker" data-autoclose="true">
-                                <input type="text" name="urnenstandort_start" class="form-control urnenstandort_start" value="10:00">
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-time"></span>
-                                 </span>
-                            </div>   
-                            
-                         </div>   
-                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Ort:</label>
-                            <div class="col-sm-2">
-                                <input type="text" name="urnenstandort_ort" class="form-control urnenstandort_ort" value="im Foyer des YOLO-Instituts">
-                            </div>
-                            
-                            
-                            <label class="col-sm-2 control-label">bis: </label>
-                            <div class="col-sm-2 input-group clockpicker" data-autoclose="true">
-                                <input type="text" name="urnenstandort_end" class="form-control urnenstandort_end" value="18:00">
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-time"></span>
-                                 </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>      
-            </div>   
+            </div>
         </div>
+        <form>
+        <div  class="no-print">
+            <h2>Daten:</h2>
+                
+            <div id="wahl_fields" class="form-horizontal">
+            
+            </div>
+        </div>
+        
         </form>
         
         <br/>
@@ -303,7 +121,7 @@
 	            
 	            <p><b><span class="zahl_sitze">11</span> representives</b> will be elected in total.</p>
 	            
-	            <p>The election will take place  <span class="wahlzeitraum">YOLO</span></p>
+	            <p>The election will take place  <span class="wahlzeitraum_engl">YOLO</span></p>
 	            
 	            <h3>The polling station</h3>
 
@@ -312,8 +130,9 @@
         </div>
         <div class="row">
 	        <table id="urnenstandorte_table" class="table table-striped table-hover">
-	        <tr><th>Datum</th><th>Uhrzeit</th><th>Ort</th></tr>
-	        <tr id="urnen_standort_table_hiddenexample" style="display:None"><td><span class= urnenstandort_datum>Montag, 30. November 2015</span></td><td><span class="urnenstandort_beginn">10:00</span> - <span class="urnenstandort_ende">16:00</span> Uhr</td><td><span class="urnenstandort_ort">Foyer des Kunsthistorischen Instituts</span></td></tr>
+	        <tr><th>Datum</th><th colspan=2>Uhrzeit</th><th>Ort</th></tr>
+	        <tr><th></th><th>von</th><th>bis</th><th></th></tr>
+	        <!--tr id="urnen_standort_table_hiddenexample" style="display:None"><td><span class= urnenstandort_datum>Montag, 30. November 2015</span></td><td><span class="urnenstandort_beginn">10:00</span> - <span class="urnenstandort_ende">16:00</span> Uhr</td><td><span class="urnenstandort_ort">Foyer des Kunsthistorischen Instituts</span></td></tr-->
 
 	        </table>
         </div>
@@ -401,23 +220,28 @@
 
 	            <p>Es ist in begründeten Ausnahmefällen möglich, Briefwahl zu beantragen. Der Briefwahlantrag ist schriftlich einzureichen und zu begründen. Er muss Name, Anschrift und Matrikelnummer des Antragsstellers enthalten.</p>
 
-	            <p>Anträge auf Briefwahl müssen bis spätestens <b><span class="frist_briefwahlantraege">Datum, Uhrzeit</span></b> Uhr bei der Wahlleitung eingegangen sein. Jeder Briefwähler hat die Briefwahlunterlagen bis spätestens 24 Stunden vor der Wahl bei der Wahlleitung abzuholen. Briefwähler, die außerdem nicht in der Lage sind, ihre Briefwahlunterlagen persönlich bei der Wahlleitung abzuholen, können die Briefwahlunterlagen zusammen mit dem Antrag auf Briefwahl schriftlich anfordern.</p>
+	            <p>Anträge auf Briefwahl müssen bis spätestens <b><span class="frist_einreichung_wahlvorschlaege">Datum</span> <span class="frist_einreichung_wahlvorschlaege_uhrzeit">Datum</span></b> Uhr bei der Wahlleitung eingegangen sein. Jeder Briefwähler hat die Briefwahlunterlagen bis spätestens 24 Stunden vor der Wahl bei der Wahlleitung abzuholen. Briefwähler, die außerdem nicht in der Lage sind, ihre Briefwahlunterlagen persönlich bei der Wahlleitung abzuholen, können die Briefwahlunterlagen zusammen mit dem Antrag auf Briefwahl schriftlich anfordern.</p>
+            </div>
+            <div class="col-sm-6">
+                <h3>Postal voting</h3>
 
+	            <p> In exceptional cases a reasoned request for postal voting can be handed in. The request must be justified and handed in in written form. It must include your name, address and matriculation number.</p>
+
+	            <p>Requests for postal voting must be handed in until <b><span class="frist_einreichung_wahlvorschlaege">Datum</span> <span class="frist_einreichung_wahlvorschlaege_uhrzeit">Datum</span></b>. The request must be submitted to the election supervisor. Every postal voter needs to get his postal voting documents until 24 hours before the election from the election supervisor. Postal voters who can't get their documents in person can request to get them send.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
 	            <h3>Auszählung</h3>
 
 	            <p>Die öffentliche Auszählung der Wahl findet am <span class="datum_auszaehlung">2. Dezember 2015</span> um <span class="uhrzeit_auszaehlung">16:00</span> Uhr <span class="ort_auszaehlung">im Fachschaftsraum über der Diathek</span> statt.</p>
 
             </div>
             <div class="col-sm-6">
-	            <h3>Postal voting</h3>
-
-	            <p> In exceptional cases a reasoned request for postal voting can be handed in. The request must be justified and handed in in written form. It must include your name, address and matriculation number.</p>
-
-	            <p>Requests for postal voting must be handed in until the  <b><span class="frist_briefwahlantraege">Datum, Uhrzeit</span></b>. The request must be submitted to the election supervisor. Every postal voter needs to get his postal voting documents until 24 hours before the election from the election supervisor. Postal voters who can't get their documents in person can request to get them send.</p>
-
+	            
 	            <h3>Counting</h3>
 
-	            <p>The public counting will take place on the <span class="datum_auszaehlung">2. Dezember 2015</span> at <span class="uhrzeit_auszaehlung">16:00</span> <span class="ort_auszaehlung">im Fachschaftsraum über der Diathek</span></p>
+	            <p>The public counting will take place on the <span class="datum_auszaehlung">2. Dezember 2015</span> at <span class="uhrzeit_auszaehlung">16:00</span> <span class="ort_auszaehlung_engl">im Fachschaftsraum über der Diathek</span></p>
 
             </div>
         </div>
@@ -426,8 +250,17 @@
 
 	            <h3>Konstituierende Sitzung</h3>
 
-	            <p>Die konstituierende Sitzung <span class="derdesfsvfsr">der</span> neu gewählten <span class="fsvfsr">Fachschaftsvertretung/Fachschaftsrat</span> findet am <span class="datum_uhrzeit_konstituierende_sitzung">8. Dezember 2015 ab 12 Uhr</span> <span class="ort_konstituierende_sitzung">im Fachschaftsraum über der Diathek</span> statt.</p>
-                
+	            <p>Die konstituierende Sitzung <span class="derdesfsvfsr">der</span> neu gewählten <span class="fsvfsr">Fachschaftsvertretung/Fachschaftsrat</span> findet am <span class="datum_konstituierende_sitzung">8. Dezember 2015</span> <span class="uhrzeit_konstituierende_sitzung">13:37</span> Uhr <span class="ort_konstituierende_sitzung">im Fachschaftsraum über der Diathek</span> statt.</p>
+            </div>
+            <div class="col-sm-6">
+                <h3>Constituent assembly </h3>
+
+	            <p>The constituent assembly will take place on the <span class="datum_konstituierende_sitzung">8. Dezember 2015</span> <span class="uhrzeit_konstituierende_sitzung">13:37</span>  <span class="ort_konstituierende_sitzung_engl">im Fachschaftsraum über der Diathek</span> </p>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">         
                 <h3> Wahlleitung </h3>
                 <p>Die Wahl wird geleitet von <b><span class="wahlleitung">Wahlleitung</span></b>.</p>
                 <p>Kontakt: <span class="wahlleitungkontakt">email@beispiel.de</span></p>
@@ -439,11 +272,8 @@
             </div>
             <div class="col-sm-6">
 
-	            <h3>Constituent assembly </h3>
-
-	            <p>The constituent assembly will take place on the <span class="datum_uhrzeit_konstituierende_sitzung">8. Dezember 2015 ab 12 Uhr</span> <span class="ort_konstituierende_sitzung">im Fachschaftsraum über der Diathek</span> </p>
-                
-                <h3> Election supervisor </h3>
+	            <h3> Election supervisor </h3>
+	            
                 <p>The election is organized by  <b><span class="wahlleitung">Wahlleitung</span></b>.</p>
                 <p>Contact: <span class="wahlleitungkontakt">email@beispiel.de</span></p>
 
