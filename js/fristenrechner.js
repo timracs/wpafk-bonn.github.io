@@ -11,7 +11,7 @@ var fristen =
         get_frist_waehlendenverzeichnis: function(){
             var first_day = $( "#datestart" ).datepicker( "getDate" );
             var start = new Date(first_day);
-            start.setDate(start.getDate() - 13);
+            start.setDate(start.getDate() - 30);
             var end = new Date(first_day);
             end.setDate(end.getDate() - 10);
             return {start:start,end:end}
@@ -31,6 +31,31 @@ var fristen =
             var end = new Date(last_day);
             end.setDate(end.getDate() +14);
             return {start:start,end:end}
-        }
+        },
+        get_frist_wahlbekanntmachung: function(){
+            var first_day = $( "#datestart" ).datepicker( "getDate" );
+            var start = new Date(first_day);
+            start.setDate(start.getDate() - 30);
+            var end = new Date(first_day);
+            end.setDate(end.getDate() - 18);
+            return {start:start,end:end}
+        },
+        get_frist_letzter_wahltag: function(){
+            var first_day = $( "#datestart" ).datepicker( "getDate" );
+            var start = new Date(first_day);
+            start.setDate(start.getDate() +2);
+            var end = new Date(first_day);
+            end.setDate(end.getDate() +4);
+            return {start:start,end:end}
+        },
+        get_wahlzeitraum: function(){
+            var first_day = $( "#datestart" ).datepicker( "getDate" );
+            var start = new Date(first_day);
+            
+            var last_day = $( "#dateend" ).datepicker( "getDate" );
+            var end = new Date(last_day);
+            
+            return {start:start,end:end}
+        },
         
     }

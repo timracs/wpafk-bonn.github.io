@@ -46,7 +46,7 @@ function create_field(data)
     
     if (data.datepicker)
     {
-        $(input).datepicker({beforeShowDay: $.datepicker.noWeekends, dateFormat: "dd.mm.yy", firstDay: 1, onSelect: function(){update_fields(data);}});
+        $(input).datepicker({dateFormat: "dd.mm.yy", firstDay: 1, onSelect: function(){update_fields(data);}});
     }
     if (data.clockpicker)
     {
@@ -102,7 +102,6 @@ function add_list_entry(parent,data)
             delete_list_entry(listitem)
         }
         listitem.appendChild(listitem_delete)
-    console.log(parent)
     parent.appendChild(listitem)
     update_fields()
 }
@@ -144,6 +143,10 @@ function update_dynamical_list(data,parent)
             tr.appendChild(td)
         }
         parent.appendChild(tr)
+    }
+    if (typeof data.onupdate != 'undefined') {
+        data.onupdate()
+        //$( "#"+data.name ).val(value) 
     }
 }
 
@@ -221,12 +224,8 @@ function load_json(json)
         {
             var parent = document.getElementById(name )
             template = fields_json[field_data_index]
-            console.log(value)
-            console.log(template)
             for (ii=0;i<value.length;ii++)
             {
-                console.log(value[ii])
-                console.log(ii)
                 for(j=0;j<template.listitem_fields.length;j++)
                 {
                     var new_value = template.listitem_fields[j].default_value

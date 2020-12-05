@@ -10,14 +10,29 @@ var fields_json =
             label:"Erster Wahltag",
             type:"text",
             default_value:"14.12.2020",
-            datepicker:true
+            datepicker:true,
+            onupdate:function(){
+                        var self = document.getElementById('datestart')
+                        $( self ).datepicker("option", "beforeShowDay", function(date){return [date.getDay() != 0 && date.getDay() <=3]})
+                        //$( self ).datepicker("option", "maxDate", new Date())
+                       return self.value
+            }
         },
         {
             name:"dateend",
             label:"Letzter Wahltag",
             type:"text",
             default_value:"16.12.2020",
-            datepicker:true
+            datepicker:true,
+            onupdate:function(){
+                        var self = document.getElementById('dateend')
+                        $( self ).datepicker("option", "beforeShowDay", $.datepicker.noWeekends)
+                        
+                        var fristen_letzter_wahltag = fristen.get_frist_letzter_wahltag()
+                        $( self ).datepicker("option", "minDate", fristen_letzter_wahltag.start)
+                        $( self ).datepicker("option", "maxDate", fristen_letzter_wahltag.end)
+                       return self.value
+            }
         },
         {
             name:"wahlzeitraum",
@@ -191,11 +206,26 @@ var fields_json =
                         
                         var fristen_waehlendenverzeichnis = fristen.get_frist_waehlendenverzeichnis()
                         fristen_waehlendenverzeichnis.start.setDate(fristen_waehlendenverzeichnis.start.getDate() +2)
-                         $( self ).datepicker("option", "minDate", fristen_waehlendenverzeichnis.start)
+                        
                         //$( self ).datepicker("option", "minDate", fristen_waehlendenverzeichnis.start.setDate(fristen_waehlendenverzeichnis.start.getDate() +3))
                         $( self ).datepicker("option", "maxDate", fristen_waehlendenverzeichnis.end)
-                    
-                       
+                        
+                        var start_auslage =$( "#start_auslage_waehlerverzeichnis" ).datepicker( "getDate" )
+                      
+                        var endfrist = 2
+                        //wenn 1. tag donnerstag oder freitag oder samstag ist
+                        if (start_auslage.getDay() >=4 )
+                        {
+                             endfrist=4
+                        }
+                        else if   (start_auslage.getDay() == 0)
+                        {
+                            endfrist = 3
+                        }
+                        var start = new Date(start_auslage);
+                        start.setDate(start.getDate() + endfrist);
+                        $( self ).datepicker("option", "minDate", start)
+                        
                        return self.value
             }
         },
@@ -235,7 +265,8 @@ var fields_json =
                         var frist_auszaehlung = fristen.get_frist_auszaehlung()
                         $( self ).datepicker("option", "minDate", frist_auszaehlung.start)
                         $( self ).datepicker("option", "maxDate", frist_auszaehlung.end)
-                    
+                        
+                        
                        
                        return self.value
             }
@@ -296,6 +327,23 @@ var fields_json =
             clockpicker:true
         },
         {
+            name:"datum_wahlbekannmachung",
+            label:"Datum der Veröffentlichung der Wahlbekanntmachung",
+            type:"text",
+            default_value:"11.11.2020",
+            datepicker:true,
+            onupdate:function(){
+                        var self = document.getElementById('datum_wahlbekannmachung')
+                        
+                        var frist_wahlbekanntmachung = fristen.get_frist_wahlbekanntmachung()
+                        $( self ).datepicker("option", "minDate", frist_wahlbekanntmachung.start)
+                        $( self ).datepicker("option", "maxDate", frist_wahlbekanntmachung.end)
+                    
+                       
+                       return self.value
+            }
+        },
+        {
             name:"urnenstandorte",
             label:"Urnenstandorte",
             type:"dynamical_list",
@@ -308,7 +356,8 @@ var fields_json =
                     label:"Datum",
                     type:"text",
                     default_value:"11.11.2020",
-                    datepicker:true
+                    datepicker:true,
+                    
                 },
                 {
                     name:"",
@@ -330,7 +379,18 @@ var fields_json =
                     type:"text",
                     default_value:"FOYER des YOLO-Instituts",
                 },
-            ]
+            ],
+            onupdate:function(){
+                        var self = document.getElementById('urnenstandorte')
+                        
+                        var wahlzeitraum = fristen.get_wahlzeitraum()
+                        
+                        $( self ).find(".form-group input.hasDatepicker").datepicker("option", "minDate", wahlzeitraum.start).datepicker("option", "maxDate", wahlzeitraum.end)
+                    
+                       
+                       return self.value
+            }
+            
         },
     ]
     
