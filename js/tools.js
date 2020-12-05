@@ -284,6 +284,34 @@ function load_link()
     }
 }
 
+function save_to_local_storage(key)
+{
+    var json = create_json()
+    var base64_string = btoa(encodeURIComponent(json))
+    localStorage.setItem(key,base64_string)
+}
+
+function load_from_local_storage(key)
+{
+    var base64_string = localStorage.getItem(key)
+    if (base64_string)
+    {
+        var json_string = decodeURIComponent(atob(base64_string))
+        load_json(json_string)
+        update_fields()
+    }
+}
+
+function hide(element)
+{
+    element.classList.add('hidden')
+}
+
+function unhide(element)
+{
+    element.classList.remove('hidden')
+}
+
 function on_pageload()
 {
     load_fields("wahl_fields")

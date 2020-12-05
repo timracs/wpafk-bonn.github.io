@@ -80,6 +80,14 @@
                         <button type="button" class="form-control" id="generate_link" name="generate_link"  onclick="copy_link()">Link</button>
                          <textarea id="link-copy-area" class="hidden"></textarea>
                     </div>
+                <!-- save to local storage-->    
+                    <div class="col-sm-2">
+                        <button type="button" class="form-control" id="save_local_storage" name="save_local_storage"  onclick="save_to_local_storage('bekanntmachung')">Speichere im Broweserspeicher</button>
+                    </div>
+                <!-- load from local storage-->    
+                    <div class="col-sm-2">
+                        <button type="button" class="form-control" id="load_local_storage" name="load_local_storage"  onclick="load_from_local_storage('bekanntmachung')">Lade aus Broweserspeicher</button>
+                    </div>
 	            </div> 
             </div>
         </div>
