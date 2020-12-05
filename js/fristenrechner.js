@@ -57,5 +57,12 @@ var fristen =
             
             return {start:start,end:end}
         },
-        
+        get_frist_wahlergebnis: function(){
+            var last_day = $( "#dateend" ).datepicker( "getDate" );
+            var start = new Date(last_day);
+            var end = new Date(last_day);
+            end.setDate(end.getDate() +365);
+            
+            return {start:start,end:end}
+        }
     }

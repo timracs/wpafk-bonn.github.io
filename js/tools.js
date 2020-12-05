@@ -97,6 +97,7 @@ function add_list_entry(parent,data)
        listitem.appendChild(create_field(listitem_data)) 
     }
         var listitem_delete = document.createElement("button")
+        listitem_delete.setAttribute('type','button')
         listitem_delete.innerHTML = data.listitem_heading + " entfernen"
         listitem_delete.onclick = function(){
             delete_list_entry(listitem)
