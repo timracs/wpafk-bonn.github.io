@@ -133,6 +133,9 @@ function update_dynamical_list(data,parent)
 {
     $( parent ).find(".scriptgenerated").remove()
     var list_data = get_dynamical_list_data(data.name)
+    if (typeof data.onupdate != 'undefined') {
+        data.onupdate()
+    }
     for (i=0;i<list_data.length;i++){
         var tr = document.createElement('tr')
         for (j=0;j<list_data[i].length;j++)
@@ -145,10 +148,7 @@ function update_dynamical_list(data,parent)
         }
         parent.appendChild(tr)
     }
-    if (typeof data.onupdate != 'undefined') {
-        data.onupdate()
-        //$( "#"+data.name ).val(value) 
-    }
+    
 }
 
 function get_dynamical_list_data(id)

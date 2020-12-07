@@ -227,7 +227,7 @@ var fields_json =
             name:"gueltige_stimmen",
             label:"Abgegebene, gültige Stimmen",
             type:"number",
-            default_value:"0",
+            default_value:"1",
             disabled:false,
             
         },
@@ -284,7 +284,7 @@ var fields_json =
                     name:"",
                     label:"Position",
                     type:"number",
-                    default_value:0,
+                    default_value:1337,
                     disabled:true,
                 },
                 {
@@ -314,12 +314,13 @@ var fields_json =
                 
                 $( self ).find(".dynamical_list_item").each(function(index)
                                                     {
-                                                        
-                                                        $( this) .find('.form-group input')[0].value = index+1
-                                                        var erhaltene_stimmen = Number($( this) .find('.form-group input')[2].value)
+                                                        console.log(index)
+                                                        $( this) .find('.form-group input').eq(0).val(index+1)
+                                                        var erhaltene_stimmen = Number($( this) .find('.form-group input').eq(2).val())
                                                         var gueltige_stimmen = Number($( "#gueltige_stimmen").val())
                                                         var stimmanteil = erhaltene_stimmen/gueltige_stimmen
-                                                        $( this) .find('.form-group input')[3].value = stimmanteil*100
+                                                        $( this) .find('.form-group input').eq(3).val(stimmanteil*100)
+                                                        console.log(stimmanteil)
                                                     })
             }
             
