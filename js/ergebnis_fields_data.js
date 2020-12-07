@@ -225,7 +225,7 @@ var fields_json =
         },
         {
             name:"ort_wahlergebnis",
-            label:"Datum der Veröffentlichung des Wahlergebnisses",
+            label:"Ort der Veröffentlichung des Wahlergebnisses",
             type:"text",
             default_value:"Bonn",
             
