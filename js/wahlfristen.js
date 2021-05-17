@@ -75,14 +75,6 @@ function updateDates(first_day, last_day){
   d = new Date(first_day);
   d.setDate(d.getDate() - 18);
   $('#wbk').text($.datepicker.formatDate( formatstring, d ));
-  //Auslage Wählendenverzeichnis (Start)
-  d = new Date(first_day);
-  d.setDate(d.getDate() - 13);
-  $('#alwvzs').text($.datepicker.formatDate( formatstring, d ));
-  //Auslage Wählendenverzeichnis (Ende)
-  d = new Date(first_day);
-  d.setDate(d.getDate() - 10);
-  $('#alwvze').text($.datepicker.formatDate( formatstring, d ));
   //Frist zur Einreichung von Wahlvorschlägen (frühestens)
   d = new Date(first_day);
   d.setDate(d.getDate() - 13);
