@@ -22,7 +22,7 @@ function create_field(data)
         var label = document.createElement("label")
         label.setAttribute("class","col-sm-3")
         label.setAttribute("for",data.name)
-        label.innerHTML=data.label
+        label.innerText=data.label
         
         var input = document.createElement("input")
         input.setAttribute("type",data.type)
@@ -63,11 +63,11 @@ function create_dynamical_list(data)
     var div = document.createElement("div")
     div.setAttribute("id",data.name)
         var heading = document.createElement("h3")
-        heading.innerHTML = data.label
+        heading.innerText = data.label
         
         var add_button = document.createElement("button")
         add_button.setAttribute("type","button")
-        add_button.innerHTML=data.add_button_text
+        add_button.innerText=data.add_button_text
         add_button.onclick = function() {
             add_list_entry(div,data)
         }
@@ -87,7 +87,7 @@ function add_list_entry(parent,data)
     //listitem.setAttribute("style","display:none")
     
         var listitem_heading = document.createElement("h4")
-        listitem_heading.innerHTML = data.listitem_heading
+        listitem_heading.innerText = data.listitem_heading
     
     listitem.appendChild(listitem_heading)
     
@@ -98,7 +98,7 @@ function add_list_entry(parent,data)
     }
         var listitem_delete = document.createElement("button")
         listitem_delete.setAttribute('type','button')
-        listitem_delete.innerHTML = data.listitem_heading + " entfernen"
+        listitem_delete.innerText = data.listitem_heading + " entfernen"
         listitem_delete.onclick = function(){
             delete_list_entry(listitem)
         }
@@ -143,7 +143,7 @@ function update_dynamical_list(data,parent)
             var td = document.createElement('td')
             td.setAttribute('class',list_data[i][j].label)
             td.classList.add("scriptgenerated")
-            td.innerHTML = list_data[i][j].value
+            td.innerText = list_data[i][j].value
             tr.appendChild(td)
         }
         parent.appendChild(tr)
@@ -164,7 +164,7 @@ function get_dynamical_list_data(id)
         for (j=0; j < listitem_children.length;j++){
         
             return_item.push({
-                label:listitem_children[j].getElementsByTagName("label")[0].innerHTML,
+                label:listitem_children[j].getElementsByTagName("label")[0].innerText,
                 value:listitem_children[j].getElementsByTagName("input")[0].value
             });
         }
@@ -184,7 +184,7 @@ function update_field(data)
     
     
     for (const element of document.getElementsByClassName(data.name)){
-        element.innerHTML = $( "#"+data.name ).val()
+        element.innerText = $( "#"+data.name ).val()
     }
 }
 
