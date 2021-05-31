@@ -126,7 +126,7 @@ function update_kandidaturen()
     {
         shuffle_children(document.getElementById("stimmzettel_kandidaturen"))
     }
-    if (data.length < document.getElementById('zahl_sitze').value)
+    if (data.length <= document.getElementById('zahl_sitze').value)
     {
        var vorlage = document.getElementById("stimmzettel_kandidatur_hiddenexample")
         var clone = vorlage.cloneNode(true)
@@ -153,7 +153,7 @@ function update_fs_name()
 }
 
 
-//fügt einen urnenstandort hinzu
+//fügt eine kandidatur hinzu
 function add_kandidatur(number=kandidaturcounter)
 {
     var vorlage = document.getElementById("kandidatur_hiddenexample")
