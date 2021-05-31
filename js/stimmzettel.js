@@ -148,7 +148,7 @@ function get_kandidatur(element)
 function update_fs_name()
 {
     for (const element of document.getElementsByClassName('fachschaft')){
-        element.innerHTML = $( "#fsname" ).val()
+        element.innerText = $( "#fsname" ).val()
     }
 }
 
