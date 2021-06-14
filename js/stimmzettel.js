@@ -44,9 +44,10 @@ function update_fsvfsr(gremium)
     var diedenfsvfsr = "den"
     var zurzumfsvfsr = "zum"
     
-    var zahl_sitze = 11
+    var zahl_sitze = 7;
     if ($( "#anzwahlberechtigte" ).val() > 500)
     {
+        zahl_sitze = 11;
         gremium = "Fachschaftsvertretung"
         derdesfsvfsr = "der"
         diederfsvfsr = "die"
