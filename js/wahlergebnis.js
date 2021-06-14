@@ -79,16 +79,16 @@ function update(){
           
 }
 
-function get_anzahl_sitze(){
-    var zahl_sitze = 11
-    if ($( "#anzwahlberechtigte" ).val() > 500)
-    {     
-        if($( "#anzwahlberechtigte" ).val() > 2000)
-            zahl_sitze = 19
-        else if($( "#anzwahlberechtigte" ).val() > 1000)
-            zahl_sitze = 15
+function get_anzahl_sitze() {
+    let zahl_sitze = 7
+    if ($("#anzwahlberechtigte").val() > 500) {
+        zahl_sitze = 11
+    } else if ($("#anzwahlberechtigte").val() > 2000) {
+        zahl_sitze = 19;
+    } else if ($("#anzwahlberechtigte").val() > 1000) {
+        zahl_sitze = 15;
     }
-    return zahl_sitze
+    return zahl_sitze;
 }
 
 function update_button_clicked(){
@@ -150,9 +150,10 @@ function update_fsvfsr(gremium)
     var diederfsvfsr = "der"
     var diedenfsvfsr = "den"
     
-    var zahl_sitze = 11
+    var zahl_sitze = 7
     if ($( "#anzwahlberechtigte" ).val() > 500)
     {
+        zahl_sitze = 11;
         gremium = "Fachschaftsvertretung"
         derdesfsvfsr = "der"
         diederfsvfsr = "die"

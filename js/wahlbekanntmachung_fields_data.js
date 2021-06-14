@@ -134,9 +134,11 @@ var fields_json =
                        if ($( "#anzwahlberechtigte" ).val() > 2000)
                             return "19"
                         else if ($( "#anzwahlberechtigte" ).val() > 1000)
-                            return "15" 
-                        else
+                            return "15"
+                        else if ($( "#anzwahlberechtigte" ).val() > 500)
                             return "11"
+                        else
+                            return "7"
             }
         },
         {
