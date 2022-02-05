@@ -275,7 +275,7 @@ var fields_json =
                         var wahlberechtigte = Number($( "#anzwahlberechtigte" ).val())
                     
                        
-                       return gueltige_stimmen/wahlberechtigte
+                       return (gueltige_stimmen/wahlberechtigte*100).toFixed(2)
             }
             
         },
@@ -326,7 +326,7 @@ var fields_json =
                                                         var erhaltene_stimmen = Number($( this) .find('.form-group input').eq(2).val())
                                                         var gueltige_stimmen = Number($( "#gueltige_stimmen").val())
                                                         var stimmanteil = erhaltene_stimmen/gueltige_stimmen
-                                                        $( this) .find('.form-group input').eq(3).val(stimmanteil*100)
+                                                        $( this) .find('.form-group input').eq(3).val((stimmanteil*100).toFixed(2))
                                                         console.log(stimmanteil)
                                                     })
             }
