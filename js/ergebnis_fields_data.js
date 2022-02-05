@@ -151,24 +151,6 @@ var fields_json =
             type:"text",
             default_value:"misterX@uni-bonn.de"
         },
-        {
-            name:"frist_einreichung_wahlvorschlaege",
-            label:"Gemeinsame Frist für die Einreichung von Kandidaturen, Briefwahlanträgen und Einsprüchen gegen das Wählendenverzeichnis",
-            type:"text",
-            default_value:"01.11.2020",
-            datepicker:true,
-            onupdate:function(){
-                        var self = document.getElementById('frist_einreichung_wahlvorschlaege')
-                        
-                        var fristen_wahlvorschlaege = fristen.get_frist_wahlvorschlaege()
-
-                        $( self ).datepicker("option", "minDate", fristen_wahlvorschlaege.start)
-                        $( self ).datepicker("option", "maxDate", fristen_wahlvorschlaege.end)
-                    
-                       
-                       return self.value
-            }
-        },
         
         {
             name:"datum_konstituierende_sitzung",
