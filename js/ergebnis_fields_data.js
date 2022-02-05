@@ -145,12 +145,6 @@ var fields_json =
             type:"text",
             default_value:"Mister X"
         },
-        {
-            name:"wahlleitungkontakt",
-            label:"Kontakt der Wahlleitung",
-            type:"text",
-            default_value:"misterX@uni-bonn.de"
-        },
         
         {
             name:"datum_konstituierende_sitzung",

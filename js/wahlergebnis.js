@@ -102,7 +102,7 @@ function update_button_clicked(){
     update_wahlzeitraum($.datepicker.formatDate( formatstring, first_day),$.datepicker.formatDate( formatstring, last_day))
     
     
-    update_wahlleitung($("#wahlleitung").val(),$("#wahlleitungkontakt").val())
+    update_wahlleitung($("#wahlleitung").val())
     
     update_konsti($("#konsti_datum").val(),$("#konsti_zeit").val(),$("#konsti_ort").val())
     
@@ -199,13 +199,10 @@ function update_fs_name()
 }
 
 
-function update_wahlleitung(wahlleitung,kontakt)
+function update_wahlleitung(wahlleitung)
 {
     for (const element of document.getElementsByClassName('wahlleitung')){
         element.innerHTML = wahlleitung
-    }
-    for (const element of document.getElementsByClassName('wahlleitungkontakt')){
-        element.innerHTML = kontakt
     }
 }
 
